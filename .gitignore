@@ -1,0 +1,10 @@
+/.metadata/
+.metadata/
+maven-tutorial
+.DS_Store
+*.settings/
+*target/
+*.project/
+*bin/
+.classpath
+.project
