@@ -7,7 +7,7 @@ public interface Dao<T> {
 	
 	void create(T t);
 	
-	void update(long id, T t);
+	void update(T t, String field, String newValue);
 	
 	void delete(T t);
 }
