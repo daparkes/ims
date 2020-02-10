@@ -21,7 +21,8 @@ public class CustomerDao implements Dao<Customer> {
 					Customer customer = new Customer(firstName, surname, id);
 					customers.add(customer);
 				}
-		} catch (Exception e) {			
+		} catch (Exception e) {		
+			e.printStackTrace();
 		}	
 		return customers;
 	}
@@ -34,6 +35,7 @@ public class CustomerDao implements Dao<Customer> {
 						+ "values ('" + customer.getFirstName() + "','" +
 						customer.getSurname() + "')");
 		} catch (Exception e) {			
+			e.printStackTrace();
 		}
 	}
 	
@@ -43,7 +45,8 @@ public class CustomerDao implements Dao<Customer> {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("update customers set " + field + "='" + newValue +
 					"' where id=" + customer.getId());
-		} catch (Exception e) {			
+		} catch (Exception e) {	
+			e.printStackTrace();
 		}
 	}
 	
@@ -54,7 +57,7 @@ public class CustomerDao implements Dao<Customer> {
 			statement.executeUpdate("delete from customers where id="
 				+ customer.getId());
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 }

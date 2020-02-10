@@ -21,6 +21,7 @@ public class UserDao implements Dao<User>{
 				users.add(user);
 				}
 		} catch (Exception e) {
+			e.printStackTrace();
 		}	
 		return users;
 	}
@@ -32,6 +33,7 @@ public class UserDao implements Dao<User>{
 			statement.executeUpdate("insert into users(username) values ('" 
 				+ user.getUsername());
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -42,6 +44,7 @@ public class UserDao implements Dao<User>{
 			statement.executeUpdate("update users set " + field + "='" + newValue +
 				"' where id=" + user.getId());
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -51,6 +54,7 @@ public class UserDao implements Dao<User>{
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("delete from users where id=" + user.getId());
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

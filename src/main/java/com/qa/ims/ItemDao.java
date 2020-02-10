@@ -22,6 +22,7 @@ public class ItemDao implements Dao<Item>{
 				items.add(item);
 				}
 		} catch (Exception e) {
+			e.printStackTrace();
 		}	
 		return items;
 	}
@@ -34,6 +35,7 @@ public class ItemDao implements Dao<Item>{
 				+ "item_name, price)" + "values ('" 
 				+ item.getItemName() + "','" + item.getPrice());
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -44,7 +46,9 @@ public class ItemDao implements Dao<Item>{
 			statement.executeUpdate("update items set " + field + "='" + newValue +
 				"' where id=" + item.getId());
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
 	}
 	
 	public void delete(Item item) {
@@ -53,6 +57,7 @@ public class ItemDao implements Dao<Item>{
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("delete from items where id=" + item.getId());
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
