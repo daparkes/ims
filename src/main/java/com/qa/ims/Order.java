@@ -3,15 +3,15 @@ package com.qa.ims;
 public class Order {
 	
 	private long id;
-	private String customer_id;
+	private String customerId;
 	private int quantity;
-	private float total_price;
+	private float totalPrice;
 	
-	public Order(long id, String customer_id, int quantity, float total_price) {
+	public Order(long id, String customerId, int quantity, float totalPrice) {
 		this.id = id;
-		this.customer_id = customer_id;
+		this.customerId = customerId;
 		this.quantity = quantity;
-		this.total_price = total_price;
+		this.totalPrice = totalPrice;
 	}
 	public long getId() {
 		return id;
@@ -19,11 +19,11 @@ public class Order {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getCustomer_id() {
-		return customer_id;
+	public String getCustomerId() {
+		return customerId;
 	}
-	public void setCustomer_id(String customer_id) {
-		this.customer_id = customer_id;
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -31,10 +31,10 @@ public class Order {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public float getTotal_price() {
-		return total_price;
+	public float getTotalPrice() {
+		return totalPrice;
 	}
-	public void setTotal_price(float total_price) {
-		this.total_price = total_price;
+	public void setTotalPrice(float totalPrice) {
+		this.totalPrice = totalPrice;
 	}	
 }

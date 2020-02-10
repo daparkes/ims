@@ -16,10 +16,10 @@ public class OrderDao implements Dao<Order> {
 				ResultSet resultSet = statement.executeQuery("select * from orders");
 				while (resultSet.next()) {
 					Long id = resultSet.getLong("id");				
-					String customer_id = resultSet.getString("customer_id");
+					String customerId = resultSet.getString("customer_id");
 					int quantity = resultSet.getInt("quantity");
-					float total_price = resultSet.getFloat("total_price");
-					Order order = new Order(id, customer_id, quantity, total_price);
+					float totalPrice = resultSet.getFloat("total_price");
+					Order order = new Order(id, customerId, quantity, totalPrice);
 					orders.add(order);
 				}
 		} catch (Exception e) {			
@@ -31,10 +31,10 @@ public class OrderDao implements Dao<Order> {
 		try (Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 				Statement statement = connection.createStatement();
-				statement.executeUpdate("insert into orders(customer_id,"
+				statement.executeUpdate("insert into orders(customerId,"
 						+ "quantity, total_price)" + "values ('" 
-						+ order.getCustomer_id() + "','" + order.getQuantity()
-						+ "','" + order.getTotal_price());
+						+ order.getCustomerId() + "','" + order.getQuantity()
+						+ "','" + order.getTotalPrice());
 		} catch (Exception e) {
 		}
 	}
