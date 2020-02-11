@@ -11,6 +11,11 @@ public class Item {
 		this.itemName = itemName;
 		this.price = price;
 	}
+	
+	public Item(String itemName, float price) {
+		this.itemName = itemName;
+		this.price = price;
+	}
 
 	public long getId() {
 		return id;
