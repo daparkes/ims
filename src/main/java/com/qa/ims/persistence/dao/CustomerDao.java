@@ -1,13 +1,15 @@
-package com.qa.ims;
+package com.qa.ims.persistence.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import com.qa.ims.persistence.domain.Customer;
 
 public class CustomerDao implements Dao<Customer> {
 	
+	@Override
 	public ArrayList<Customer> readAll() {
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		try (Connection connection = DriverManager.getConnection(
@@ -27,7 +29,8 @@ public class CustomerDao implements Dao<Customer> {
 		return customers;
 	}
 	
-	public void create(Customer customer) {
+	@Override
+	public Customer create(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 				Statement statement = connection.createStatement();
@@ -37,25 +40,31 @@ public class CustomerDao implements Dao<Customer> {
 		} catch (Exception e) {			
 			e.printStackTrace();
 		}
+		return customer;
 	}
 	
-	public void update(Customer customer, String field, String newValue) {
+	@Override
+	public Customer update(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("update customers set " + field + "='" + newValue +
-					"' where id=" + customer.getId());
+			statement.executeUpdate("update customers set first_name ='"
+					+ customer.getFirstName() + "', surname ='"
+					+ customer.getSurname() + "' where id =" + customer.getId());
+			return customer;
 		} catch (Exception e) {	
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
-	public void delete(Customer customer) {
+	@Override
+	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("delete from customers where id="
-				+ customer.getId());
+				+ id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

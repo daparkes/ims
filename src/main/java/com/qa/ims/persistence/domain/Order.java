@@ -1,4 +1,4 @@
-package com.qa.ims;
+package com.qa.ims.persistence.domain;
 
 public class Order {
 	
@@ -6,6 +6,7 @@ public class Order {
 	private String customerId;
 	private int quantity;
 	private float totalPrice;
+
 	
 	public Order(long id, String customerId, int quantity, float totalPrice) {
 		this.id = id;
@@ -13,6 +14,7 @@ public class Order {
 		this.quantity = quantity;
 		this.totalPrice = totalPrice;
 	}
+	
 	public long getId() {
 		return id;
 	}

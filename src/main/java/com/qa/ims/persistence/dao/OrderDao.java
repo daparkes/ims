@@ -1,4 +1,4 @@
-package com.qa.ims;
+package com.qa.ims.persistence.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,8 +6,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.qa.ims.persistence.domain.*;
+
 public class OrderDao implements Dao<Order> {
 
+	@Override
 	public ArrayList<Order> readAll() {
 		ArrayList<Order> orders = new ArrayList<Order>();
 		try (Connection connection = DriverManager.getConnection(
@@ -28,12 +31,13 @@ public class OrderDao implements Dao<Order> {
 		return orders;
 	}
 	
-	public void create(Order order, OrderItem orderItem) {
+	@Override
+	public Order create(Order order) {
 		try (Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 				Statement statement = connection.createStatement();
-				statement.executeUpdate("insert into order_items(item_id, order_id)"
-						+ " values (" + orderItem.getItemId() + ", " + orderItem.getOrderId() + ")");
+//				statement.executeUpdate("insert into order_items(item_id, order_id)"
+//						+ " values (" + orderItem.getItemId() + ", " + orderItem.getOrderId() + ")");
 				statement.executeUpdate("insert into orders(customerId,"
 						+ "total_price)" + "values ('" 
 						+ order.getCustomerId() + "','" + order.getTotalPrice() + ")");
@@ -41,8 +45,10 @@ public class OrderDao implements Dao<Order> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return order;
 	}
 	
+	@Override
 	public void update(Order order, String field, String newValue) {
 		try (Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
@@ -54,6 +60,7 @@ public class OrderDao implements Dao<Order> {
 		}
 	}
 	
+	@Override
 	public void delete(Order order) {
 		try (Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {

@@ -1,4 +1,4 @@
-package com.qa.ims;
+package com.qa.ims.persistence.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,56 +6,62 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ItemDao implements Dao<Item>{
+import com.qa.ims.persistence.domain.OrderItem;
 
-	public ArrayList<Item> readAll() {
-		ArrayList<Item> items = new ArrayList<Item>();
+public class OrderItemDao implements Dao<OrderItem>{
+
+	@Override
+	public ArrayList<OrderItem> readAll() {
+		ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
 		try (Connection connection = DriverManager.getConnection(
 			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from items");
+			ResultSet resultSet = statement.executeQuery("select * from order_items");
 			while (resultSet.next()) {
 				long id = resultSet.getLong("id");				
-				String itemName = resultSet.getString("item_name");
-				float price = resultSet.getInt("price");
-				Item item = new Item(id, itemName, price);
-				items.add(item);
+				long orderId = resultSet.getLong("order_id");
+				long itemId = resultSet.getLong("item_id");
+				OrderItem orderItem = new OrderItem(id, orderId, itemId);
+				orderItems.add(orderItem);
 				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
-		return items;
+		return orderItems;
 	}
 	
-	public void create(Item item) {
+	@Override
+	public OrderItem create(OrderItem orderItem) {
 		try (Connection connection = DriverManager.getConnection(
 			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("insert into items("
-				+ "item_name, price)" + "values ('" 
-				+ item.getItemName() + "','" + item.getPrice());
+			statement.executeUpdate("insert into order_items("
+				+ "order_id, item_id)" + "values ('" 
+				+ orderItem.getOrderId() + "','" + orderItem.getItemId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return orderItem;
+	}
+	
+	@Override
+	public void update(OrderItem orderItem, String field, String newValue) {
+		try (Connection connection = DriverManager.getConnection(
+			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+			Statement statement = connection.createStatement();
+			statement.executeUpdate("update order_items set " + field + "='" + newValue +
+				"' where id=" + orderItem.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void update(Item item, String field, String newValue) {
+	@Override
+	public void delete(OrderItem orderItem) {
 		try (Connection connection = DriverManager.getConnection(
 			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("update items set " + field + "='" + newValue +
-				"' where id=" + item.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void delete(Item item) {
-		try (Connection connection = DriverManager.getConnection(
-			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
-			Statement statement = connection.createStatement();
-			statement.executeUpdate("delete from items where id=" + item.getId());
+			statement.executeUpdate("delete from orderItems where id=" + orderItem.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
