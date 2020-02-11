@@ -43,23 +43,25 @@ public class UserDao implements Dao<User>{
 	}
 	
 	@Override
-	public void update(User user, String field, String newValue) {
+	public User update(User user) {
 		try (Connection connection = DriverManager.getConnection(
 			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("update users set " + field + "='" + newValue +
-				"' where id=" + user.getId());
+			statement.executeUpdate("update users set username=" + user.getUsername() 
+			+ " where id=" + user.getId());
+			return user;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
 	@Override
-	public void delete(User user) {
+	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(
 			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("delete from users where id=" + user.getId());
+			statement.executeUpdate("delete from users where id=" + id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

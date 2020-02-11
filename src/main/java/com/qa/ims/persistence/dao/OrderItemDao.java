@@ -45,23 +45,26 @@ public class OrderItemDao implements Dao<OrderItem>{
 	}
 	
 	@Override
-	public void update(OrderItem orderItem, String field, String newValue) {
+	public OrderItem update(OrderItem orderItem) {
 		try (Connection connection = DriverManager.getConnection(
 			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("update order_items set " + field + "='" + newValue +
-				"' where id=" + orderItem.getId());
+			statement.executeUpdate("update order_items set order_id=" 
+				+ orderItem.getOrderId() +	", item_id=" + orderItem.getItemId()
+				+ " where id=" + orderItem.getId());
+			return orderItem;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
 	@Override
-	public void delete(OrderItem orderItem) {
+	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(
 			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("delete from orderItems where id=" + orderItem.getId());
+			statement.executeUpdate("delete from orderItems where id=" + id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
