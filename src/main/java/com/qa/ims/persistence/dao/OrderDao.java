@@ -52,7 +52,8 @@ public class OrderDao implements Dao<Order> {
 	}
 	
 	/**
-	 * Turns the last record in the database into an object.
+   * Turns the last record in the database into an object.
+   *
 	 * @param resultSet
 	 * @return
 	 * @throws SQLException
@@ -66,7 +67,7 @@ public class OrderDao implements Dao<Order> {
 	}
 	
 	/**
-	 * Gets the last added record from the database.
+	 * Gets the last added record in the database.
 	 * @return
 	 */
 	public Order readLatest() {
@@ -108,7 +109,7 @@ public class OrderDao implements Dao<Order> {
 	}
 	
 	/**
-	 * Update a record in the database.
+	 * Modifies a record in the database.
 	 */
 	@Override
 	public Order update(Order order) {
@@ -131,7 +132,7 @@ public class OrderDao implements Dao<Order> {
 	}
 	
 	/**
-	 * Delete a record from the database.
+	 * Deletes a record in the database.
 	 */
 	@Override
 	public void delete(long id) {
