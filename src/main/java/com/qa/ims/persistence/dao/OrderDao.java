@@ -16,13 +16,14 @@ public class OrderDao implements Dao<Order> {
 		try (Connection connection = DriverManager.getConnection(
 			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from orders");
+			ResultSet resultSet = statement.executeQuery("select * from orders"
+					+ "join order_items on orders.id=order_items.order_id");
 			while (resultSet.next()) {
 				Long id = resultSet.getLong("id");				
 				Long customerId = resultSet.getLong("customer_id");
-				int quantity = resultSet.getInt("quantity");
 				float totalPrice = resultSet.getFloat("total_price");
-				Order order = new Order(id, customerId, quantity, totalPrice);
+				int itemId = resultSet.getInt("itemId");
+				Order order = new Order(id, customerId, totalPrice, itemId);
 				orders.add(order);
 			}
 		} catch (Exception e) {	
@@ -36,11 +37,11 @@ public class OrderDao implements Dao<Order> {
 		try (Connection connection = DriverManager.getConnection(
 			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
-//			statement.executeUpdate("insert into order_items(item_id, order_id)"
-//				+ " values (" + orderItem.getItemId() + ", " + orderItem.getOrderId() + ")");
+			statement.executeUpdate("insert into order_items(item_id, order_id)"
+				+ " values (" + order.getItemId() + ", " + order.getId() + ")");
 			statement.executeUpdate("insert into orders(customer_id,"
-				+ "total_price)" + "values (" + order.getCustomerId() + ", (select sum(price) as "
-				+ "Order_Cost from (select item_id from order_items "
+				+ "total_price)" + "values (" + order.getCustomerId() + ", "
+				+ "(select sum(price) as Order_Cost from (select item_id from order_items "
 				+ "where order_id =" + order.getId() + ") as items_in_order join items "
 				+ "on items_in_order.item_id = items.id))");
 		} catch (Exception e) {
@@ -54,11 +55,13 @@ public class OrderDao implements Dao<Order> {
 		try (Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
+			statement.executeUpdate("update order_items set item_id="
+				+ order.getItemId() + " where order_id=" + order.getId());
 			statement.executeUpdate("update orders set customer_id=" + order.getCustomerId()
 				+ ", total_price=(select sum(price) as Order_Cost from (select item_id"
-				+ "from order_items where order_id =" + order.getId() + ") as items_in_order join items"
-				+ "on items_in_order.item_id = items.id where id=" + order.getId()
-				+ ") where id=" + order.getId());
+				+ "from order_items where order_id =" + order.getId() 
+				+ ") as items_in_order join items on items_in_order.item_id = "
+				+ "items.id where id=" + order.getId() + ") where id=" + order.getId());
 			return order;
 		} catch (Exception e) {	
 			e.printStackTrace();
@@ -71,6 +74,8 @@ public class OrderDao implements Dao<Order> {
 		try (Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
+			statement.executeUpdate("delete from order_items where order_id="
+					+ id);
 			statement.executeUpdate("delete from orders where id=" + id);
 		} catch (Exception e) {
 			e.printStackTrace();
