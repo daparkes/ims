@@ -47,7 +47,7 @@ public class ItemDao implements Dao<Item>{
 	}
 	
 	/**
-	 * Create a record in the database.
+	 * Creates a record in the database. 
 	 */
 	@Override
 	public Item create(Item item) {
@@ -65,7 +65,7 @@ public class ItemDao implements Dao<Item>{
 	}
 	
 	/**
-	 * Update a record in the database.
+	 * Modifies a record in the database.
 	 */
 	@Override
 	public Item update(Item item) {
@@ -83,8 +83,8 @@ public class ItemDao implements Dao<Item>{
 	}
 	
 	/**
-	 * Delete a record from the database.
-	 */
+	 * Deletes a record in the database.
+   */
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(

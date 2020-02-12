@@ -12,6 +12,11 @@ public class CustomerDao implements Dao<Customer> {
 	
 	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
 	
+
+	/**
+	 * Reads all records from the table.
+	 */
+
 	private String connectionURL;
 	private String username;
 	private String password;
@@ -48,7 +53,7 @@ public class CustomerDao implements Dao<Customer> {
 	}
 	
 	/**
-	 * Create a record in the database.
+	 * Creates a record in the database. 
 	 */
 	@Override
 	public Customer create(Customer customer) {
@@ -66,7 +71,7 @@ public class CustomerDao implements Dao<Customer> {
 	}
 	
 	/**
-	 * Update a record in the database.
+	 * Modifies a record in the database.
 	 */
 	@Override
 	public Customer update(Customer customer) {

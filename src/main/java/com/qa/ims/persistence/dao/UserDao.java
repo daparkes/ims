@@ -48,7 +48,7 @@ public class UserDao implements Dao<User>{
 	}
 	
 	/**
-	 * Create a record in the database.
+	 * Creates a record in the database. 
 	 */
 	@Override
 	public User create(User user) {
@@ -63,9 +63,9 @@ public class UserDao implements Dao<User>{
 		}
 		return user;
 	}
-		
+
 	/**
-	 * Update a record in the database.
+	 * Modifies a record in the database.
 	 */
 	@Override
 	public User update(User user) {
@@ -83,7 +83,7 @@ public class UserDao implements Dao<User>{
 	}
 	
 	/**
-	 * Delete a record from the database.
+	 * Deletes a record in the database.
 	 */
 	@Override
 	public void delete(long id) {
