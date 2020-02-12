@@ -20,7 +20,7 @@ public class CustomerDao implements Dao<Customer> {
 					Long id = resultSet.getLong("id");				
 					String firstName = resultSet.getString("first_name");
 					String surname = resultSet.getString("surname");
-					Customer customer = new Customer(firstName, surname, id);
+					Customer customer = new Customer(id, firstName, surname);
 					customers.add(customer);
 				}
 		} catch (Exception e) {		

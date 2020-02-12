@@ -45,7 +45,7 @@ public class CustomerControllerTest {
 		String surname = "Perrins";
 		Mockito.doReturn(firstName, surname).when(customerController).getInput();
 		Customer customer = new Customer(firstName, surname);
-		Customer savedCustomer = new Customer("Chris", "Perrins", 1L);
+		Customer savedCustomer = new Customer(1L, "Chris", "Perrins");
 		Mockito.when(customerServices.create(customer)).thenReturn(savedCustomer);
 		assertEquals(customer, customerController.update());
 	}
@@ -55,7 +55,7 @@ public class CustomerControllerTest {
 		String id = "1";
 		String firstName = "Rhys";
 		String surname = "Thompson";
-		Mockito.doReturn(firstName, surname, id).when(customerController).getInput();
+		Mockito.doReturn(id, firstName, surname).when(customerController).getInput();
 		Customer customer = new Customer(firstName, surname);
 		Mockito.when(customerServices.update(customer)).thenReturn(customer);
 		assertEquals(customer, customerController.update());

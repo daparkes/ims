@@ -6,7 +6,7 @@ public class Customer {
 	private String surname;
 	private long id;
 		
-	public Customer (String firstName, String surname, long id) {
+	public Customer (long id, String firstName, String surname) {
 		this.firstName = firstName;
 		this.surname = surname;
 		this.id = id;
