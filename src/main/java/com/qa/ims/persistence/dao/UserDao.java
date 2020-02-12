@@ -18,7 +18,7 @@ public class UserDao implements Dao<User>{
 	private String username;
 	private String password;
 	
-	public UserDao(String connectionURL, String username, String password) {
+	public UserDao(String username, String password) {
 		this.connectionURL = "jdbc:mysql://localhost:3306/ims";
 		this.username = username;
 		this.password = password;

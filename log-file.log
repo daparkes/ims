@@ -1,0 +1,6 @@
+2020-02-12 15:02:32 ERROR System:110 - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2020-02-12 15:03:14 ERROR CustomerDao:56 - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.

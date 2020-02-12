@@ -16,7 +16,7 @@ public class ItemDao implements Dao<Item>{
 	private String username;
 	private String password;
 	
-	public ItemDao(String connectionURL, String username, String password) {
+	public ItemDao(String username, String password) {
 		this.connectionURL = "jdbc:mysql://localhost:3306/ims";
 		this.username = username;
 		this.password = password;

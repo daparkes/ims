@@ -1,5 +1,3 @@
-drop database ims;
-
 CREATE DATABASE IF NOT EXISTS ims;
 USE ims;
 
@@ -36,7 +34,6 @@ CREATE TABLE order_items (
     id INT AUTO_INCREMENT,
     item_id INT,
     order_id INT,
-    quantity INT,
     PRIMARY KEY (id),
     FOREIGN KEY (order_id)
         REFERENCES orders(id),

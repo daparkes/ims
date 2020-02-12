@@ -19,7 +19,7 @@ public class OrderDao implements Dao<Order> {
 	private String username;
 	private String password;
 	
-	public OrderDao(String connectionURL, String username, String password) {
+	public OrderDao(String username, String password) {
 		this.connectionURL = "jdbc:mysql://localhost:3306/ims";
 		this.username = username;
 		this.password = password;
@@ -58,7 +58,7 @@ public class OrderDao implements Dao<Order> {
 	
 	public Order readLatest() {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, "root", "root");
+				connectionURL, username, password);
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
 					"select from orders order by id desc limit 1");) {
