@@ -40,6 +40,11 @@ public enum Action {
 		}
 	}
 	
+	/**
+	 * Chooses an action based on user input.
+	 * @return
+	 */
+	
 	public static Action getAction() {
 		Action action;
 		while (true) {

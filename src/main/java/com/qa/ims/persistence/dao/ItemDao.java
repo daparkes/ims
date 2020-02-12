@@ -22,6 +22,9 @@ public class ItemDao implements Dao<Item>{
 		this.password = password;
 	}
 	
+	/**
+	 * Returns a complete list of all records in the table.
+	 */
 	@Override
 	public ArrayList<Item> readAll() {
 		ArrayList<Item> items = new ArrayList<Item>();
@@ -43,6 +46,9 @@ public class ItemDao implements Dao<Item>{
 		return items;
 	}
 	
+	/**
+	 * Create a record in the database.
+	 */
 	@Override
 	public Item create(Item item) {
 		try (Connection connection = DriverManager.getConnection(
@@ -58,6 +64,9 @@ public class ItemDao implements Dao<Item>{
 		return item;
 	}
 	
+	/**
+	 * Update a record in the database.
+	 */
 	@Override
 	public Item update(Item item) {
 		try (Connection connection = DriverManager.getConnection(
@@ -73,6 +82,9 @@ public class ItemDao implements Dao<Item>{
 		
 	}
 	
+	/**
+	 * Delete a record from the database.
+	 */
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(

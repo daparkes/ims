@@ -24,6 +24,9 @@ public class UserDao implements Dao<User>{
 		this.password = password;
 	}
 	
+	/**
+	 * Returns a complete list of all records in the table.
+	 */
 	@Override
 	public ArrayList<User> readAll() {
 		ArrayList<User> users = new ArrayList<User>();
@@ -44,6 +47,9 @@ public class UserDao implements Dao<User>{
 		return users;
 	}
 	
+	/**
+	 * Create a record in the database.
+	 */
 	@Override
 	public User create(User user) {
 		try (Connection connection = DriverManager.getConnection(
@@ -57,7 +63,10 @@ public class UserDao implements Dao<User>{
 		}
 		return user;
 	}
-	
+		
+	/**
+	 * Update a record in the database.
+	 */
 	@Override
 	public User update(User user) {
 		try (Connection connection = DriverManager.getConnection(
@@ -73,6 +82,9 @@ public class UserDao implements Dao<User>{
 		return null;
 	}
 	
+	/**
+	 * Delete a record from the database.
+	 */
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(

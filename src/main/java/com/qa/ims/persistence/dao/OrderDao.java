@@ -25,6 +25,9 @@ public class OrderDao implements Dao<Order> {
 		this.password = password;
 	}
 	
+	/**
+	 * Returns a complete list of all records in the table.
+	 */
 	@Override
 	public ArrayList<Order> readAll() {
 		ArrayList<Order> orders = new ArrayList<Order>();
@@ -48,6 +51,12 @@ public class OrderDao implements Dao<Order> {
 		return orders;
 	}
 	
+	/**
+	 * Turns the last record in the database into an object.
+	 * @param resultSet
+	 * @return
+	 * @throws SQLException
+	 */
 	Order latestOrder(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		Long customerId = resultSet.getLong("customer_id");
@@ -56,6 +65,10 @@ public class OrderDao implements Dao<Order> {
 		return new Order(id, customerId, totalPrice, itemId);
 	}
 	
+	/**
+	 * Gets the last added record from the database.
+	 * @return
+	 */
 	public Order readLatest() {
 		try (Connection connection = DriverManager.getConnection(
 				connectionURL, username, password);
@@ -71,7 +84,9 @@ public class OrderDao implements Dao<Order> {
 			return null;
 			}
 
-	
+	/**
+	 * Create a record in the database.
+	 */
 	@Override
 	public Order create(Order order) {
 		try (Connection connection = DriverManager.getConnection(
@@ -92,6 +107,9 @@ public class OrderDao implements Dao<Order> {
 		return null;
 	}
 	
+	/**
+	 * Update a record in the database.
+	 */
 	@Override
 	public Order update(Order order) {
 		try (Connection connection = DriverManager.getConnection(
@@ -112,6 +130,9 @@ public class OrderDao implements Dao<Order> {
 		return null;		
 	}
 	
+	/**
+	 * Delete a record from the database.
+	 */
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(

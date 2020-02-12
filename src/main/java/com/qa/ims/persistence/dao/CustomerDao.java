@@ -22,6 +22,10 @@ public class CustomerDao implements Dao<Customer> {
 		this.password = password;
 	}
 	
+	/**
+	 * Returns a complete list of all records in the table.
+	 */
+	
 	@Override
 	public ArrayList<Customer> readAll() {
 		ArrayList<Customer> customers = new ArrayList<Customer>();
@@ -43,6 +47,9 @@ public class CustomerDao implements Dao<Customer> {
 		return customers;
 	}
 	
+	/**
+	 * Create a record in the database.
+	 */
 	@Override
 	public Customer create(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
@@ -58,6 +65,9 @@ public class CustomerDao implements Dao<Customer> {
 		return customer;
 	}
 	
+	/**
+	 * Update a record in the database.
+	 */
 	@Override
 	public Customer update(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
@@ -74,6 +84,9 @@ public class CustomerDao implements Dao<Customer> {
 		return null;
 	}
 	
+	/**
+	 * Delete a record from the database.
+	 */
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(
