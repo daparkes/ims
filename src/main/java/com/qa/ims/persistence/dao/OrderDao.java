@@ -19,7 +19,7 @@ public class OrderDao implements Dao<Order> {
 			ResultSet resultSet = statement.executeQuery("select * from orders");
 			while (resultSet.next()) {
 				Long id = resultSet.getLong("id");				
-				String customerId = resultSet.getString("customer_id");
+				Long customerId = resultSet.getLong("customer_id");
 				int quantity = resultSet.getInt("quantity");
 				float totalPrice = resultSet.getFloat("total_price");
 				Order order = new Order(id, customerId, quantity, totalPrice);
