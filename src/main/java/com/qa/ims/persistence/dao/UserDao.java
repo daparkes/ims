@@ -56,7 +56,7 @@ public class UserDao implements Dao<User>{
 				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("insert into users(username) values ('" 
-				+ user.getUsername());
+				+ user.getUsername() + "')");
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());

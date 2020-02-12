@@ -90,7 +90,8 @@ public class ItemDao implements Dao<Item>{
 		try (Connection connection = DriverManager.getConnection(
 				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("delete from items where id=" + id);
+			statement.executeUpdate("delete from order_items where item_id=" + id);
+			statement.executeUpdate("delete from items where id=" + id);			
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
