@@ -38,7 +38,7 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order create() {
-		LOGGER.info("Please enter a customer ID:");
+		LOGGER.info("Please enter an order ID:");
 		long customerId = Long.valueOf(getInput());
 		LOGGER.info("Please enter a quantity:");
 		int quantity = Integer.valueOf(getInput());
@@ -56,11 +56,13 @@ public class OrderController implements CrudController<Order> {
 	public Order update() {
 		LOGGER.info("Please enter the ID of the order you would like to update: ");
 		Long id = Long.valueOf(getInput());
-		LOGGER.info("Please enter a first name: ");
-		String firstName = getInput();
-		LOGGER.info("Please enter a surname: ");
-		String surname = getInput();
-		Order order = orderService.update(new Order(firstName, surname, id));
+		LOGGER.info("Please enter a customer ID:");
+		Long customerId = Long.valueOf(getInput());
+		LOGGER.info("Please enter a quantity:");
+		int quantity = Integer.valueOf(getInput());
+		LOGGER.info("Please enter an item ID:");
+		int itemId = Integer.valueOf(getInput());
+		Order order = orderService.update(new Order(customerId, quantity, itemId));
 		LOGGER.info("Order Updated");
 		return order;
 	}
