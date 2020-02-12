@@ -12,11 +12,21 @@ public class CustomerDao implements Dao<Customer> {
 	
 	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
 	
+	private String connectionURL;
+	private String username;
+	private String password;
+	
+	public CustomerDao(String username, String password) {
+		this.connectionURL = "jdbc:mysql://localhost:3306/ims";
+		this.username = username;
+		this.password = password;
+	}
+	
 	@Override
 	public ArrayList<Customer> readAll() {
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("select * from customers");
 				while (resultSet.next()) {
@@ -36,7 +46,7 @@ public class CustomerDao implements Dao<Customer> {
 	@Override
 	public Customer create(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 				Statement statement = connection.createStatement();
 				statement.executeUpdate("insert into customers(first_name, surname)"
 						+ "values ('" + customer.getFirstName() + "','" +
@@ -51,7 +61,7 @@ public class CustomerDao implements Dao<Customer> {
 	@Override
 	public Customer update(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("update customers set first_name ='"
 					+ customer.getFirstName() + "', surname ='"
@@ -67,7 +77,7 @@ public class CustomerDao implements Dao<Customer> {
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("delete from customers where id="
 				+ id);
