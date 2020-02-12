@@ -1,0 +1,16 @@
+2020-02-12 15:02:32 ERROR System:110 - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2020-02-12 15:03:14 ERROR CustomerDao:56 - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2020-02-12 15:14:30 ERROR System:115 - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2020-02-12 15:17:47 ERROR CustomerDao:56 - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2020-02-12 15:18:15 ERROR CustomerDao:41 - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2020-02-12 15:26:13 ERROR ItemDao:56 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1.5' at line 1
