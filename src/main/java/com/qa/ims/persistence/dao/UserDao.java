@@ -6,10 +6,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.qa.ims.persistence.domain.User;
 
 public class UserDao implements Dao<User>{
 
+	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
+	
 	@Override
 	public ArrayList<User> readAll() {
 		ArrayList<User> users = new ArrayList<User>();
@@ -24,7 +28,8 @@ public class UserDao implements Dao<User>{
 				users.add(user);
 				}
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}	
 		return users;
 	}
@@ -37,7 +42,8 @@ public class UserDao implements Dao<User>{
 			statement.executeUpdate("insert into users(username) values ('" 
 				+ user.getUsername());
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 		return user;
 	}
@@ -51,7 +57,8 @@ public class UserDao implements Dao<User>{
 			+ " where id=" + user.getId());
 			return user;
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 		return null;
 	}
@@ -63,7 +70,8 @@ public class UserDao implements Dao<User>{
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("delete from users where id=" + id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 }

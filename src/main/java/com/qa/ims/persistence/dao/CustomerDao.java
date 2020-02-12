@@ -6,8 +6,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import com.qa.ims.persistence.domain.Customer;
+import org.apache.log4j.Logger;
 
 public class CustomerDao implements Dao<Customer> {
+	
+	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
 	
 	@Override
 	public ArrayList<Customer> readAll() {
@@ -24,7 +27,8 @@ public class CustomerDao implements Dao<Customer> {
 					customers.add(customer);
 				}
 		} catch (Exception e) {		
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}	
 		return customers;
 	}
@@ -38,7 +42,8 @@ public class CustomerDao implements Dao<Customer> {
 						+ "values ('" + customer.getFirstName() + "','" +
 						customer.getSurname() + "')");
 		} catch (Exception e) {			
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 		return customer;
 	}
@@ -53,7 +58,8 @@ public class CustomerDao implements Dao<Customer> {
 					+ customer.getSurname() + "' where id =" + customer.getId());
 			return customer;
 		} catch (Exception e) {	
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 		return null;
 	}
@@ -66,7 +72,8 @@ public class CustomerDao implements Dao<Customer> {
 			statement.executeUpdate("delete from customers where id="
 				+ id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 }

@@ -32,7 +32,8 @@ public class OrderDao implements Dao<Order> {
 				orders.add(order);
 			}
 		} catch (Exception e) {	
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}	
 		return orders;
 	}
@@ -75,7 +76,8 @@ public class OrderDao implements Dao<Order> {
 				+ "on items_in_order.item_id = items.id))");
 			return order;
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 		return null;
 	}
@@ -94,7 +96,8 @@ public class OrderDao implements Dao<Order> {
 				+ "items.id where id=" + order.getId() + ") where id=" + order.getId());
 			return order;
 		} catch (Exception e) {	
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 		return null;		
 	}
@@ -108,7 +111,8 @@ public class OrderDao implements Dao<Order> {
 					+ id);
 			statement.executeUpdate("delete from orders where id=" + id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 }
