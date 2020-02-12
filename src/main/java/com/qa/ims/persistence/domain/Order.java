@@ -5,25 +5,32 @@ public class Order {
 	private long id;
 	private long customerId;
 	private float totalPrice;
-	private int quantity;
 	private int itemId;
 
 	
-	public Order(long id, long customerId, int quantity, float totalPrice) {
+	public Order(long id, long customerId, float totalPrice, int itemId) {
 		this.id = id;
 		this.customerId = customerId;
 		this.totalPrice = totalPrice;
-		this.quantity = quantity;
+		this.itemId = itemId;
 	}
 	
-	public Order(long customerId, int quantity, float totalPrice) {
-		this.customerId = customerId;
-		this.totalPrice = totalPrice;
+	public Order(long customerId, int itemId) {
+		this.customerId = customerId;		
+		this.itemId = itemId;
 	}
 	
-	public Order(long customerId, int quantity, int itemId) {
+	public Order(long id, long customerId, int itemId) {
+		this.id = id;
 		this.customerId = customerId;
-		this.quantity = quantity;
+		this.itemId = itemId;
+	}
+	
+	public int getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
 	

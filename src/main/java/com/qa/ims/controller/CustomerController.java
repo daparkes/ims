@@ -58,7 +58,7 @@ public class CustomerController implements CrudController<Customer> {
 		String firstName = getInput();
 		LOGGER.info("Please enter a surname: ");
 		String surname = getInput();
-		Customer customer = customerService.update(new Customer(firstName, surname, id));
+		Customer customer = customerService.update(new Customer(id, firstName, surname));
 		LOGGER.info("Customer Updated");
 		return customer;
 	}
