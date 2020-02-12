@@ -14,6 +14,9 @@ public class UserDao implements Dao<User>{
 
 	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
 	
+	/**
+	 * Reads all records from the table.
+	 */
 	@Override
 	public ArrayList<User> readAll() {
 		ArrayList<User> users = new ArrayList<User>();
@@ -34,6 +37,9 @@ public class UserDao implements Dao<User>{
 		return users;
 	}
 	
+	/**
+	 * Creates a record in the database. 
+	 */
 	@Override
 	public User create(User user) {
 		try (Connection connection = DriverManager.getConnection(
@@ -48,6 +54,9 @@ public class UserDao implements Dao<User>{
 		return user;
 	}
 	
+	/**
+	 * Modifies a record in the database.
+	 */
 	@Override
 	public User update(User user) {
 		try (Connection connection = DriverManager.getConnection(
@@ -63,6 +72,9 @@ public class UserDao implements Dao<User>{
 		return null;
 	}
 	
+	/**
+	 * Deletes a record in the database.
+	 */
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(

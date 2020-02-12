@@ -47,7 +47,7 @@ public class CustomerControllerTest {
 		Customer customer = new Customer(firstName, surname);
 		Customer savedCustomer = new Customer(1L, "Chris", "Perrins");
 		Mockito.when(customerServices.create(customer)).thenReturn(savedCustomer);
-		assertEquals(customer, customerController.update());
+		assertEquals(savedCustomer, customerController.create());
 	}
 	
 	@Test

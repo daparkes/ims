@@ -12,6 +12,9 @@ public class CustomerDao implements Dao<Customer> {
 	
 	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
 	
+	/**
+	 * Reads all records from the table.
+	 */
 	@Override
 	public ArrayList<Customer> readAll() {
 		ArrayList<Customer> customers = new ArrayList<Customer>();
@@ -32,7 +35,10 @@ public class CustomerDao implements Dao<Customer> {
 		}	
 		return customers;
 	}
-	
+		
+	/**
+	 * Creates a record in the database. 
+	 */
 	@Override
 	public Customer create(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
@@ -48,6 +54,9 @@ public class CustomerDao implements Dao<Customer> {
 		return customer;
 	}
 	
+	/**
+	 * Modifies a record in the database.
+	 */
 	@Override
 	public Customer update(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
@@ -64,6 +73,9 @@ public class CustomerDao implements Dao<Customer> {
 		return null;
 	}
 	
+	/**
+	 * Deletes a record in the database.
+	 */
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(

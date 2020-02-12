@@ -15,6 +15,9 @@ public class OrderDao implements Dao<Order> {
 	
 	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
 
+	/**
+	 * Reads all records from the table.
+	 */
 	@Override
 	public ArrayList<Order> readAll() {
 		ArrayList<Order> orders = new ArrayList<Order>();
@@ -38,6 +41,12 @@ public class OrderDao implements Dao<Order> {
 		return orders;
 	}
 	
+	/**
+	 * Turns the last order in the DB into an object.
+	 * @param resultSet
+	 * @return
+	 * @throws SQLException
+	 */
 	Order latestOrder(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		Long customerId = resultSet.getLong("customer_id");
@@ -46,6 +55,10 @@ public class OrderDao implements Dao<Order> {
 		return new Order(id, customerId, totalPrice, itemId);
 	}
 	
+	/**
+	 * Gets the last added record in the database.
+	 * @return
+	 */
 	public Order readLatest() {
 		try (Connection connection = DriverManager.getConnection(
 			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root");
@@ -61,7 +74,9 @@ public class OrderDao implements Dao<Order> {
 			return null;
 			}
 
-	
+	/**
+	 * Creates a record in the database. 
+	 */
 	@Override
 	public Order create(Order order) {
 		try (Connection connection = DriverManager.getConnection(
@@ -82,6 +97,9 @@ public class OrderDao implements Dao<Order> {
 		return null;
 	}
 	
+	/**
+	 * Modifies a record in the database.
+	 */
 	@Override
 	public Order update(Order order) {
 		try (Connection connection = DriverManager.getConnection(
@@ -102,6 +120,9 @@ public class OrderDao implements Dao<Order> {
 		return null;		
 	}
 	
+	/**
+	 * Deletes a record in the database.
+	 */
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(
