@@ -3,12 +3,17 @@ package com.qa.ims.persistence.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
 
 import com.qa.ims.persistence.domain.*;
 
 public class OrderDao implements Dao<Order> {
+	
+	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
 
 	@Override
 	public ArrayList<Order> readAll() {
@@ -32,6 +37,30 @@ public class OrderDao implements Dao<Order> {
 		return orders;
 	}
 	
+	Order latestOrder(ResultSet resultSet) throws SQLException {
+		Long id = resultSet.getLong("id");
+		Long customerId = resultSet.getLong("customer_id");
+		float totalPrice = resultSet.getFloat("total_price");
+		int itemId = resultSet.getInt("item_id");
+		return new Order(id, customerId, totalPrice, itemId);
+	}
+	
+	public Order readLatest() {
+		try (Connection connection = DriverManager.getConnection(
+			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root");
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(
+					"select from orders order by id desc limit 1");) {
+				resultSet.next();
+				return latestOrder(resultSet);
+				} catch (SQLException e) {
+					LOGGER.debug(e.getStackTrace());
+					LOGGER.error(e.getMessage());
+				}
+			return null;
+			}
+
+	
 	@Override
 	public Order create(Order order) {
 		try (Connection connection = DriverManager.getConnection(
@@ -44,10 +73,11 @@ public class OrderDao implements Dao<Order> {
 				+ "(select sum(price) as Order_Cost from (select item_id from order_items "
 				+ "where order_id =" + order.getId() + ") as items_in_order join items "
 				+ "on items_in_order.item_id = items.id))");
+			return order;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return order;
+		return null;
 	}
 	
 	@Override
