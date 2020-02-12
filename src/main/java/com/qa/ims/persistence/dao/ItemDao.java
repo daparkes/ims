@@ -45,24 +45,25 @@ public class ItemDao implements Dao<Item>{
 	}
 	
 	@Override
-	public void update(Item item, String field, String newValue) {
+	public Item update(Item item) {
 		try (Connection connection = DriverManager.getConnection(
 			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("update items set " + field + "='" + newValue +
-				"' where id=" + item.getId());
+			statement.executeUpdate("update items set item_name='" + item.getItemName()
+			+ "', price=" + item.getPrice() + " where id=" + item.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return item;
 		
 	}
 	
 	@Override
-	public void delete(Item item) {
+	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(
 			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("delete from items where id=" + item.getId());
+			statement.executeUpdate("delete from items where id=" + id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
