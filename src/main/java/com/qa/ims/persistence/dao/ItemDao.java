@@ -10,16 +10,26 @@ import com.qa.ims.persistence.domain.*;
 
 public class ItemDao implements Dao<Item>{
 
-	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
+	public static final Logger LOGGER = Logger.getLogger(ItemDao.class);
+	
+	private String connectionURL;
+	private String username;
+	private String password;
+	
+	public ItemDao(String username, String password) {
+		this.connectionURL = "jdbc:mysql://34.76.133.172:3306/ims";
+		this.username = username;
+		this.password = password;
+	}
 	
 	/**
-	 * Reads all records from the table.
+	 * Returns a complete list of all records in the table.
 	 */
 	@Override
 	public ArrayList<Item> readAll() {
 		ArrayList<Item> items = new ArrayList<Item>();
 		try (Connection connection = DriverManager.getConnection(
-			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("select * from items");
 			while (resultSet.next()) {
@@ -42,11 +52,11 @@ public class ItemDao implements Dao<Item>{
 	@Override
 	public Item create(Item item) {
 		try (Connection connection = DriverManager.getConnection(
-			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("insert into items("
-				+ "item_name, price)" + "values ('" 
-				+ item.getItemName() + "','" + item.getPrice());
+				+ "item_name, price)" + " values ('" 
+				+ item.getItemName() + "'," + item.getPrice() +")");
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
@@ -60,7 +70,7 @@ public class ItemDao implements Dao<Item>{
 	@Override
 	public Item update(Item item) {
 		try (Connection connection = DriverManager.getConnection(
-			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("update items set item_name='" + item.getItemName()
 			+ "', price=" + item.getPrice() + " where id=" + item.getId());
@@ -74,11 +84,11 @@ public class ItemDao implements Dao<Item>{
 	
 	/**
 	 * Deletes a record in the database.
-	 */
+   */
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(
-			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("delete from items where id=" + id);
 		} catch (Exception e) {

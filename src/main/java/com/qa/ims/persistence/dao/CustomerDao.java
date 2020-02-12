@@ -12,14 +12,30 @@ public class CustomerDao implements Dao<Customer> {
 	
 	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
 	
+
 	/**
 	 * Reads all records from the table.
 	 */
+
+	private String connectionURL;
+	private String username;
+	private String password;
+	
+	public CustomerDao(String username, String password) {
+		this.connectionURL = "jdbc:mysql://34.76.133.172:3306/ims";
+		this.username = username;
+		this.password = password;
+	}
+	
+	/**
+	 * Returns a complete list of all records in the table.
+	 */
+	
 	@Override
 	public ArrayList<Customer> readAll() {
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("select * from customers");
 				while (resultSet.next()) {
@@ -35,14 +51,14 @@ public class CustomerDao implements Dao<Customer> {
 		}	
 		return customers;
 	}
-		
+	
 	/**
 	 * Creates a record in the database. 
 	 */
 	@Override
 	public Customer create(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 				Statement statement = connection.createStatement();
 				statement.executeUpdate("insert into customers(first_name, surname)"
 						+ "values ('" + customer.getFirstName() + "','" +
@@ -60,7 +76,7 @@ public class CustomerDao implements Dao<Customer> {
 	@Override
 	public Customer update(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("update customers set first_name ='"
 					+ customer.getFirstName() + "', surname ='"
@@ -74,12 +90,12 @@ public class CustomerDao implements Dao<Customer> {
 	}
 	
 	/**
-	 * Deletes a record in the database.
+	 * Delete a record from the database.
 	 */
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("delete from customers where id="
 				+ id);

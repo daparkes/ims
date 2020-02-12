@@ -13,16 +13,26 @@ import com.qa.ims.persistence.domain.*;
 
 public class OrderDao implements Dao<Order> {
 	
-	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
+	public static final Logger LOGGER = Logger.getLogger(OrderDao.class);
 
+	private String connectionURL;
+	private String username;
+	private String password;
+	
+	public OrderDao(String username, String password) {
+		this.connectionURL = "jdbc:mysql://34.76.133.172:3306/ims";
+		this.username = username;
+		this.password = password;
+	}
+	
 	/**
-	 * Reads all records from the table.
+	 * Returns a complete list of all records in the table.
 	 */
 	@Override
 	public ArrayList<Order> readAll() {
 		ArrayList<Order> orders = new ArrayList<Order>();
 		try (Connection connection = DriverManager.getConnection(
-			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("select * from orders"
 					+ "join order_items on orders.id=order_items.order_id");
@@ -42,7 +52,8 @@ public class OrderDao implements Dao<Order> {
 	}
 	
 	/**
-	 * Turns the last order in the DB into an object.
+   * Turns the last record in the database into an object.
+   *
 	 * @param resultSet
 	 * @return
 	 * @throws SQLException
@@ -61,7 +72,7 @@ public class OrderDao implements Dao<Order> {
 	 */
 	public Order readLatest() {
 		try (Connection connection = DriverManager.getConnection(
-			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root");
+				connectionURL, username, password);
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
 					"select from orders order by id desc limit 1");) {
@@ -75,12 +86,12 @@ public class OrderDao implements Dao<Order> {
 			}
 
 	/**
-	 * Creates a record in the database. 
+	 * Create a record in the database.
 	 */
 	@Override
 	public Order create(Order order) {
 		try (Connection connection = DriverManager.getConnection(
-			"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("insert into order_items(item_id, order_id)"
 				+ " values (" + order.getItemId() + ", " + order.getId() + ")");
@@ -103,7 +114,7 @@ public class OrderDao implements Dao<Order> {
 	@Override
 	public Order update(Order order) {
 		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("update order_items set item_id="
 				+ order.getItemId() + " where order_id=" + order.getId());
@@ -126,7 +137,7 @@ public class OrderDao implements Dao<Order> {
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://34.76.133.172:3306/ims", "root", "root")) {
+				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("delete from order_items where order_id="
 					+ id);
