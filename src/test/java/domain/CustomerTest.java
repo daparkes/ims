@@ -16,8 +16,18 @@ public class CustomerTest {
 		assertEquals("bob", customer.getFirstName());
 	}
 	
+	@Test
 	public void getSurnameTest() {
 		assertEquals("dylan", customer.getSurname());
 	}
 	
+	@Test
+	public void getIdTest() {
+		assertEquals(1L, customer.getId());
+	}
+	
+	@Test
+	public void toStringTest() {
+		assertEquals("id: 1 first name: bob surname: dylan", customer.toString());
+	}
 }

@@ -276,3 +276,23 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 2020-02-12 18:21:22 INFO  Domain:29 - ORDER: View, create, update or delete orders
 2020-02-12 18:21:22 INFO  Domain:29 - USER: View, create, update or delete users
 2020-02-12 18:21:22 INFO  Domain:29 - STOP: Close the application
+2020-02-12 22:13:42 INFO  CustomerController:31 - id: 0 first name: Chris surname: P
+2020-02-12 22:13:42 INFO  CustomerController:31 - id: 0 first name: Rhys surname: T
+2020-02-12 22:13:42 INFO  CustomerController:31 - id: 0 first name: Nic surname: J
+2020-02-12 22:13:42 INFO  CustomerController:55 - Please enter the ID of the customer you would like to update: 
+2020-02-12 22:13:42 INFO  CustomerController:57 - Please enter a first name: 
+2020-02-12 22:13:42 INFO  CustomerController:59 - Please enter a surname: 
+2020-02-12 22:13:42 INFO  CustomerController:62 - Customer Updated
+2020-02-12 22:13:42 INFO  CustomerController:41 - Please enter a first name:
+2020-02-12 22:13:42 INFO  CustomerController:43 - Please enter a surname
+2020-02-12 22:13:42 INFO  CustomerController:46 - Customer created
+2020-02-12 22:13:42 INFO  CustomerController:71 - Please enter the ID of the customer you would like to delete:
+2020-02-12 22:16:40 INFO  UserController:31 - com.qa.ims.persistence.domain.User@b70da4c
+2020-02-12 22:16:40 INFO  UserController:31 - com.qa.ims.persistence.domain.User@f478a81
+2020-02-12 22:16:40 INFO  UserController:31 - com.qa.ims.persistence.domain.User@19553973
+2020-02-12 22:16:40 INFO  UserController:53 - Please enter the ID of the user you would like to update: 
+2020-02-12 22:16:40 INFO  UserController:55 - Please enter a new username:
+2020-02-12 22:16:40 INFO  UserController:58 - User Updated
+2020-02-12 22:16:40 INFO  UserController:41 - Please enter a username:
+2020-02-12 22:16:40 INFO  UserController:44 - User created successfully
+2020-02-12 22:16:40 INFO  UserController:67 - Please enter the ID of the user you would like to delete:

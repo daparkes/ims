@@ -31,7 +31,7 @@ public class Customer {
 	}
 	
 	public String toString() {
-		return "id:" + id + " first name:" + firstName + " surname:" + surname;
+		return "id: " + id + " first name: " + firstName + " surname: " + surname;
 	}
 
 	@Override

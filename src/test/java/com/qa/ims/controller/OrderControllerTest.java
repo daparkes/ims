@@ -56,7 +56,7 @@ public class OrderControllerTest {
 		String id = "2";
 		String customerId = "4";
 		String itemId = "3";
-		Mockito.doReturn(id, customerId, itemId).when(orderController).getInput();
+		Mockito.doReturn(id, customerId, itemId).when(orderController).getInput();		
 		Order order = new Order(id, customerId, itemId);
 		Mockito.when(orderServices.update(order)).thenReturn(order);
 		assertEquals(order, orderController.update());

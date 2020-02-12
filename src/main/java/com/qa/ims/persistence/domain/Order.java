@@ -29,17 +29,11 @@ public class Order {
 	public int getItemId() {
 		return itemId;
 	}
-
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
-	}
 	
 	public long getId() {
 		return id;
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
+
 	public Long getCustomerId() {
 		return customerId;
 	}
