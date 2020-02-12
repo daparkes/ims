@@ -27,21 +27,25 @@ public class System {
 	public static final Logger LOGGER = Logger.getLogger(System.class);
 	
 	public void imSystem() {
-		String cont="y";
-		while (cont=="y") {
-			LOGGER.info("Please enter your username:");
-			String username = Utils.getInput();
-			LOGGER.info("Please enter your password:");
-			String password = Utils.getInput();
-			
-			init(username, password);
-			
+
+		LOGGER.info("Please enter your username:");
+		String username = Utils.getInput();
+		LOGGER.info("Please enter your password:");
+		String password = Utils.getInput();
+		
+		init(username, password);
+		
+		while (true) {
 			LOGGER.info("Which system would you like to access?");
 			Domain.printDomains();
 			
 			Domain domain = Domain.getDomain();
-			LOGGER.info("What would you like to do with " + domain.name().toLowerCase() + ":");
-			
+			if (domain.name()=="STOP") {
+				break;
+			} else {
+				LOGGER.info("What would you like to do with " + domain.name().toLowerCase()
+					+ ":");
+			}
 			
 			Action.printActions();
 			Action action = Action.getAction();
@@ -56,20 +60,23 @@ public class System {
 				ItemController itemController = new ItemController(
 					new ItemServices(new ItemDao(username, password)));
 				doAction(itemController, action);
+				continue;
 			case ORDER:
 				OrderController orderController = new OrderController(
 					new OrderServices(new OrderDao(username, password)));
 				doAction(orderController, action);
+				continue;
 			case USER:
 				UserController userController = new UserController(
 						new UserServices(new UserDao(username, password)));
 				doAction(userController, action);
+				continue;
 			case STOP:
 				break;
 			default:
-				break;
+				continue;
+				}
 			}
-		}
 	}
 	
 	public void doAction(CrudController<?> crudController, Action action) {
@@ -94,7 +101,7 @@ public class System {
 	}
 	
 	public void init(String username, String password) {
-		init("jdbc:mysql://localhost:3306/ims", username, password);
+		init("jdbc:mysql://34.76.133.172:3306/ims", username, password);
 	}
 	
 	/**

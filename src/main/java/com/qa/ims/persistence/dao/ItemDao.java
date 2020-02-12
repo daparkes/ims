@@ -17,7 +17,7 @@ public class ItemDao implements Dao<Item>{
 	private String password;
 	
 	public ItemDao(String username, String password) {
-		this.connectionURL = "jdbc:mysql://localhost:3306/ims";
+		this.connectionURL = "jdbc:mysql://34.76.133.172:3306/ims";
 		this.username = username;
 		this.password = password;
 	}
@@ -49,8 +49,8 @@ public class ItemDao implements Dao<Item>{
 				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("insert into items("
-				+ "item_name, price)" + "values ('" 
-				+ item.getItemName() + "','" + item.getPrice());
+				+ "item_name, price)" + " values ('" 
+				+ item.getItemName() + "'," + item.getPrice() +")");
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
