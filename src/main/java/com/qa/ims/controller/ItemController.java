@@ -58,7 +58,7 @@ public class ItemController implements CrudController<Item> {
 		String itemName = getInput();
 		LOGGER.info("Please enter a price: ");
 		Float price = Float.valueOf(getInput());
-		Item item = itemService.update(new Item(itemName, price));
+		Item item = itemService.update(new Item(id, itemName, price));
 		LOGGER.info("Item Updated");
 		return item;
 	}
