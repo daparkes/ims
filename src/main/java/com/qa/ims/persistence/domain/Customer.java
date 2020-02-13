@@ -1,5 +1,10 @@
 package com.qa.ims.persistence.domain;
 
+/**
+ * A value object to represent records from the Customers table in the database.
+ * @author Dan
+ *
+ */
 public class Customer {
 
 	private String firstName;

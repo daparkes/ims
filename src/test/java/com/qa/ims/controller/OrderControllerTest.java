@@ -19,6 +19,11 @@ import com.qa.ims.service.OrderServices;
 
 @RunWith(MockitoJUnitRunner.class)
 
+/**
+ * Mockito tests that stub Services functionality to test Controller methods.
+ * @author Dan
+ *
+ */
 public class OrderControllerTest {
 	
 	@Mock

@@ -10,6 +10,11 @@ import org.apache.log4j.Logger;
 
 import com.qa.ims.persistence.domain.User;
 
+/**
+ * A data access object for abstracting access to the Users table in the database.
+ * @author Dan
+ *
+ */
 public class UserDao implements Dao<User>{
 
 	public static final Logger LOGGER = Logger.getLogger(UserDao.class);

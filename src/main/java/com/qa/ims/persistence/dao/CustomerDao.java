@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import com.qa.ims.persistence.domain.Customer;
 import org.apache.log4j.Logger;
 
+/**
+ * A data access object for abstracting access to the Customers table in the database.
+ * @author Dan
+ *
+ */
 public class CustomerDao implements Dao<Customer> {
 	
 	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);

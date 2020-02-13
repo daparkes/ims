@@ -22,6 +22,12 @@ import com.qa.ims.service.OrderServices;
 import com.qa.ims.service.UserServices;
 import com.qa.ims.utils.Utils;
 
+/**
+ * This class contains most of the logic of the application as the user sees it.
+ * It can be instantiated in the Runner class to start the program.
+ * @author Dan
+ *
+ */
 public class System {
 	
 	public static final Logger LOGGER = Logger.getLogger(System.class);
@@ -110,9 +116,9 @@ public class System {
 	 * @param username
 	 * @param password
 	 */
-	public void init(String username, String password) {
-		init("jdbc:mysql://34.76.133.172:3306/ims", username, password);
-	}
+//	public void init(String username, String password) {
+//		init("jdbc:mysql://34.76.133.172:3306/ims", username, password);
+//	}
 	
 	/**
 	 * Initialises the database with the username and password provided by the user
@@ -122,9 +128,9 @@ public class System {
 	 * @param username
 	 * @param password
 	 */
-	public void init(String connectionURL, String username, String password) {
-		try (Connection connection = DriverManager.getConnection(connectionURL, 
-				username, password);) {
+	public void init(String username, String password) {
+		try (Connection connection = DriverManager.getConnection(
+				"jdbc:mysql://34.76.133.172:3306/ims", username, password);) {
 		} catch (SQLException e) {
 		LOGGER.debug(e.getStackTrace());
 		LOGGER.error(e.getMessage());

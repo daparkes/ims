@@ -1,5 +1,10 @@
 package com.qa.ims.persistence.domain;
 
+/**
+ * A value object to represent records from the Users table in the database.
+ * @author Dan
+ *
+ */
 public class User {
 	
 	private Long id;
