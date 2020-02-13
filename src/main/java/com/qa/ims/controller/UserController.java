@@ -67,5 +67,6 @@ public class UserController implements CrudController<User> {
 		LOGGER.info("Please enter the ID of the user you would like to delete:");
 		Long id = Long.valueOf(getInput());
 		userService.delete(id);
+		LOGGER.info("User successfully deleted");
 	}
 }

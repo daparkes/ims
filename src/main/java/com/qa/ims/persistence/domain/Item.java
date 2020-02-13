@@ -2,26 +2,26 @@ package com.qa.ims.persistence.domain;
 
 public class Item {
 	
-	private long id;
+	private Long id;
 	private String itemName;
-	private float price;
+	private Float price;
 	
-	public Item(long id, String itemName, float price) {
+	public Item(Long id, String itemName, Float price) {
 		this.id = id;
 		this.itemName = itemName;
 		this.price = price;
 	}
 	
-	public Item(String itemName, float price) {
+	public Item(String itemName, Float price) {
 		this.itemName = itemName;
 		this.price = price;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -33,11 +33,11 @@ public class Item {
 		this.itemName = itemName;
 	}
 
-	public float getPrice() {
+	public Float getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(Float price) {
 		this.price = price;
 	}
 

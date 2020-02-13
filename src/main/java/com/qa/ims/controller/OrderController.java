@@ -71,5 +71,6 @@ public class OrderController implements CrudController<Order> {
 		LOGGER.info("Please enter the ID of the order you would like to delete:");
 		Long id = Long.valueOf(getInput());
 		orderService.delete(id);
+		LOGGER.info("Order successfully deleted");
 	}
 }

@@ -33,9 +33,9 @@ public class ItemDao implements Dao<Item>{
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("select * from items");
 			while (resultSet.next()) {
-				long id = resultSet.getLong("id");				
+				Long id = resultSet.getLong("id");				
 				String itemName = resultSet.getString("item_name");
-				float price = resultSet.getInt("price");
+				float price = resultSet.getFloat("price");
 				Item item = new Item(id, itemName, price);
 				items.add(item);
 				}
