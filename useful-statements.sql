@@ -40,7 +40,8 @@ update order_items set item_id="
 				+ "from order_items where order_id =" + order.getId() 
 				+ ") as items_in_order join items on items_in_order.item_id = "
 				+ "items.id where id=" + order.getId() + ") where id=" + order.getId()
-                
+select * from orders;
 insert into orders(customer_id, total_price) values (
-	2, (select sum(price) as Order_Cost from (
-		select item_id from order_items where order_id =3) as items_in_order join items on items_in_order.item_id=items.id));
+	2, (select sum(price) as Order_Cost from (select item_id from order_items where order_id =5) as items_in_order join items on items_in_order.item_id=items.id));
+    
+select * from order_items;
