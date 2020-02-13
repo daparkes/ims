@@ -44,8 +44,8 @@ public class OrderControllerTest {
 		String id = "2";
 		String customerId = "4";
 		String itemId = "3";
-		Mockito.doReturn(id, customerId, itemId).when(orderController).getInput();
-		Order order = new Order(2L, 4L, 3);
+		Mockito.doReturn(customerId, itemId).when(orderController).getInput();
+		Order order = new Order(4L, 3);
 		Order savedOrder = new Order(2L, 4L, 3);
 		Mockito.when(orderServices.create(order)).thenReturn(savedOrder);
 		assertEquals(savedOrder, orderController.create());
@@ -57,7 +57,7 @@ public class OrderControllerTest {
 		String customerId = "4";
 		String itemId = "3";
 		Mockito.doReturn(id, customerId, itemId).when(orderController).getInput();		
-		Order order = new Order(id, customerId, itemId);
+		Order order = new Order(2L, 4L, 3);
 		Mockito.when(orderServices.update(order)).thenReturn(order);
 		assertEquals(order, orderController.update());
 	}

@@ -25,7 +25,6 @@ public class OrderTest {
 		assertEquals(4L, order.getCustomerId());
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Test
 	public void getTotalPrice() {
 		assertEquals(15.50f, order.getTotalPrice(), 0);
