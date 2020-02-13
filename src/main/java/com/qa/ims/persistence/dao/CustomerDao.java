@@ -40,9 +40,9 @@ public class CustomerDao implements Dao<Customer> {
 	public ArrayList<Customer> readAll() {
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
+				connectionURL, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select * from customers");
+				ResultSet resultSet = statement.executeQuery("select * from customers");) {
 				while (resultSet.next()) {
 					Long id = resultSet.getLong("id");				
 					String firstName = resultSet.getString("first_name");
@@ -63,8 +63,8 @@ public class CustomerDao implements Dao<Customer> {
 	@Override
 	public Customer create(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-				Statement statement = connection.createStatement();
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {				
 				statement.executeUpdate("insert into customers(first_name, surname)"
 						+ "values ('" + customer.getFirstName() + "','" +
 						customer.getSurname() + "')");
@@ -81,8 +81,8 @@ public class CustomerDao implements Dao<Customer> {
 	@Override
 	public Customer update(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
 			statement.executeUpdate("update customers set first_name ='"
 					+ customer.getFirstName() + "', surname ='"
 					+ customer.getSurname() + "' where id =" + customer.getId());
@@ -100,10 +100,9 @@ public class CustomerDao implements Dao<Customer> {
 	@Override
 	public void delete(Long id) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
-			statement.executeUpdate("delete from customers where id="
-				+ id);
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
+			statement.executeUpdate("delete from customers where id=" + id);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());

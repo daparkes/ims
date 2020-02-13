@@ -36,9 +36,9 @@ public class UserDao implements Dao<User>{
 	public ArrayList<User> readAll() {
 		ArrayList<User> users = new ArrayList<User>();
 		try (Connection connection = DriverManager.getConnection(
-			connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from users");
+			connectionURL, username, password);
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("select * from users");) {			
 			while (resultSet.next()) {
 				long id = resultSet.getLong("id");
 				String username = resultSet.getString("username");
@@ -58,8 +58,8 @@ public class UserDao implements Dao<User>{
 	@Override
 	public User create(User user) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
 			statement.executeUpdate("insert into users(username) values ('" 
 				+ user.getUsername() + "')");
 		} catch (Exception e) {
@@ -75,8 +75,8 @@ public class UserDao implements Dao<User>{
 	@Override
 	public User update(User user) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
 			statement.executeUpdate("update users set username='" + user.getUsername() 
 			+ "' where id=" + user.getId());
 			return user;
@@ -93,8 +93,8 @@ public class UserDao implements Dao<User>{
 	@Override
 	public void delete(Long id) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
 			statement.executeUpdate("delete from users where id=" + id);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
