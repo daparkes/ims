@@ -11,6 +11,11 @@ import org.apache.log4j.Logger;
 
 import com.qa.ims.persistence.domain.*;
 
+/**
+ * A data access object for abstracting access to the Orders table in the database.
+ * @author Dan
+ *
+ */
 public class OrderDao implements Dao<Order> {
 	
 	public static final Logger LOGGER = Logger.getLogger(OrderDao.class);

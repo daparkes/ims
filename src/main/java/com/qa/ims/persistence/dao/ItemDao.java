@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import com.qa.ims.persistence.domain.*;
 
+/**
+ * A data access object for abstracting access to the Items table in the database.
+ * @author Dan
+ *
+ */
 public class ItemDao implements Dao<Item>{
 
 	public static final Logger LOGGER = Logger.getLogger(ItemDao.class);

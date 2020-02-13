@@ -19,6 +19,11 @@ import com.qa.ims.service.UserServices;
 
 @RunWith(MockitoJUnitRunner.class)
 
+/**
+ * Mockito tests that stub Services functionality to test Controller methods.
+ * @author Dan
+ *
+ */
 public class UserControllerTest {
 	
 	@Mock

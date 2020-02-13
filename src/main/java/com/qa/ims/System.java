@@ -22,6 +22,12 @@ import com.qa.ims.service.OrderServices;
 import com.qa.ims.service.UserServices;
 import com.qa.ims.utils.Utils;
 
+/**
+ * This class contains most of the logic of the application as the user sees it.
+ * It can be instantiated in the Runner class to start the program.
+ * @author Dan
+ *
+ */
 public class System {
 	
 	public static final Logger LOGGER = Logger.getLogger(System.class);
