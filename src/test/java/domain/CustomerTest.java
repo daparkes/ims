@@ -23,7 +23,7 @@ public class CustomerTest {
 	
 	@Test
 	public void getIdTest() {
-		assertEquals(1L, customer.getId());
+		assertEquals(new Long (1L), customer.getId());
 	}
 	
 	@Test

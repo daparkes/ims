@@ -2,10 +2,10 @@ package com.qa.ims.persistence.domain;
 
 public class User {
 	
-	private long id;
+	private Long id;
 	private String username;
 	
-	public User(long id, String username) {
+	public User(Long id, String username) {
 		this.id = id;
 		this.username = username;
 	}
@@ -13,7 +13,7 @@ public class User {
 	public User(String username) {
 		this.username = username;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	

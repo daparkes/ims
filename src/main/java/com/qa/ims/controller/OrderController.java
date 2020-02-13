@@ -39,9 +39,9 @@ public class OrderController implements CrudController<Order> {
 	@Override
 	public Order create() {
 		LOGGER.info("Please enter a customer ID:");
-		long customerId = Long.valueOf(getInput());
+		Long customerId = Long.valueOf(getInput());
 		LOGGER.info("Please enter an item ID:");
-		int itemId = Integer.valueOf(getInput());
+		Long itemId = Long.valueOf(getInput());
 		Order order = orderService.create(new Order(customerId, itemId));
 		LOGGER.info("Order created");
 		return order;
@@ -57,7 +57,7 @@ public class OrderController implements CrudController<Order> {
 		LOGGER.info("Please enter a customer ID:");
 		Long customerId = Long.valueOf(getInput());
 		LOGGER.info("Please enter an item ID:");
-		int itemId = Integer.valueOf(getInput());
+		Long itemId = Long.valueOf(getInput());
 		Order order = orderService.update(new Order(id, customerId, itemId));
 		LOGGER.info("Order Updated");
 		return order;

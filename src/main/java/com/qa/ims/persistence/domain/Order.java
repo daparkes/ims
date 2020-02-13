@@ -2,48 +2,56 @@ package com.qa.ims.persistence.domain;
 
 public class Order {
 	
-	private long id;
-	private long customerId;
-	private float totalPrice;
-	private int itemId;
+	private Long id;
+	private Long customerId;
+	private Float totalPrice;
+	private Long itemId;
 
 	
-	public Order(long id, long customerId, float totalPrice, int itemId) {
+	public Order(Long id, Long customerId, Float totalPrice, Long itemId) {
 		this.id = id;
 		this.customerId = customerId;
 		this.totalPrice = totalPrice;
 		this.itemId = itemId;
 	}
 	
-	public Order(long customerId, int itemId) {
+	public Order(Long customerId, Long itemId) {
 		this.customerId = customerId;		
 		this.itemId = itemId;
 	}
 	
-	public Order(long id, long customerId, int itemId) {
+	public Order(Long id, Long customerId, Long itemId) {
 		this.id = id;
 		this.customerId = customerId;
 		this.itemId = itemId;
 	}
 	
-	public int getItemId() {
+	public Long getItemId() {
 		return itemId;
 	}
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public long getCustomerId() {
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
+	}
+
+	public Long getCustomerId() {
 		return customerId;
 	}
 	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
-	public float getTotalPrice() {
+	public Float getTotalPrice() {
 		return totalPrice;
 	}
-	public void setTotalPrice(float totalPrice) {
+	public void setTotalPrice(Float totalPrice) {
 		this.totalPrice = totalPrice;
 	}	
 	
@@ -56,10 +64,10 @@ public class Order {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (customerId ^ (customerId >>> 32));
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + itemId;
-		result = prime * result + Float.floatToIntBits(totalPrice);
+		result = prime * result + ((customerId == null) ? 0 : customerId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((itemId == null) ? 0 : itemId.hashCode());
+		result = prime * result + ((totalPrice == null) ? 0 : totalPrice.hashCode());
 		return result;
 	}
 
@@ -72,15 +80,29 @@ public class Order {
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		if (customerId != other.customerId)
+		if (customerId == null) {
+			if (other.customerId != null)
+				return false;
+		} else if (!customerId.equals(other.customerId))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
-		if (itemId != other.itemId)
+		if (itemId == null) {
+			if (other.itemId != null)
+				return false;
+		} else if (!itemId.equals(other.itemId))
 			return false;
-		if (Float.floatToIntBits(totalPrice) != Float.floatToIntBits(other.totalPrice))
+		if (totalPrice == null) {
+			if (other.totalPrice != null)
+				return false;
+		} else if (!totalPrice.equals(other.totalPrice))
 			return false;
 		return true;
 	}
+
+
 	
 }

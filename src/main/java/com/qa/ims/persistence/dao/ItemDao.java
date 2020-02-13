@@ -86,7 +86,7 @@ public class ItemDao implements Dao<Item>{
 	 * Deletes a record in the database.
    */
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		try (Connection connection = DriverManager.getConnection(
 				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();

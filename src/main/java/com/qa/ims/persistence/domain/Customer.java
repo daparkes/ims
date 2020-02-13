@@ -4,9 +4,9 @@ public class Customer {
 
 	private String firstName;
 	private String surname;
-	private long id;
+	private Long id;
 		
-	public Customer (long id, String firstName, String surname) {
+	public Customer (Long id, String firstName, String surname) {
 		this.firstName = firstName;
 		this.surname = surname;
 		this.id = id;
@@ -26,7 +26,7 @@ public class Customer {
 		return surname;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	

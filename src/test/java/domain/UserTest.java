@@ -12,7 +12,7 @@ public class UserTest {
 	
 	@Test
 	public void getIdTest() {
-		assertEquals(1, user.getId());
+		assertEquals(new Long (1), user.getId());
 	}
 	
 	@Test
