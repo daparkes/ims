@@ -35,12 +35,12 @@ public class OrderDao implements Dao<Order> {
 				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("select * from orders"
-					+ "join order_items on orders.id=order_items.order_id");
+					+ " join order_items on orders.id=order_items.order_id");
 			while (resultSet.next()) {
 				Long id = resultSet.getLong("id");				
 				Long customerId = resultSet.getLong("customer_id");
 				float totalPrice = resultSet.getFloat("total_price");
-				int itemId = resultSet.getInt("itemId");
+				Long itemId = resultSet.getLong("item_id");
 				Order order = new Order(id, customerId, totalPrice, itemId);
 				orders.add(order);
 			}
@@ -61,8 +61,8 @@ public class OrderDao implements Dao<Order> {
 	Order latestOrder(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		Long customerId = resultSet.getLong("customer_id");
-		float totalPrice = resultSet.getFloat("total_price");
-		int itemId = resultSet.getInt("item_id");
+		Float totalPrice = resultSet.getFloat("total_price");
+		Long itemId = resultSet.getLong("item_id");
 		return new Order(id, customerId, totalPrice, itemId);
 	}
 	
@@ -75,7 +75,7 @@ public class OrderDao implements Dao<Order> {
 				connectionURL, username, password);
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-					"select from orders order by id desc limit 1");) {
+					"select * from orders order by id desc limit 1");) {
 				resultSet.next();
 				return latestOrder(resultSet);
 				} catch (SQLException e) {
@@ -93,13 +93,14 @@ public class OrderDao implements Dao<Order> {
 		try (Connection connection = DriverManager.getConnection(
 				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("insert into orders(customer_id,"
-				+ "total_price)" + "values (" + order.getCustomerId() + ", "
+			statement.executeUpdate("insert into orders(customer_id, "
+				+ "total_price)" + " values (" + order.getCustomerId() + ", "
 				+ "(select sum(price) as Order_Cost from (select item_id from order_items "
 				+ "where order_id =" + order.getId() + ") as items_in_order join items "
 				+ "on items_in_order.item_id = items.id))");
+			Order latestOrder = readLatest();
 			statement.executeUpdate("insert into order_items(item_id, order_id)"
-					+ " values (" + order.getItemId() + ", " + order.getId() + ")");
+				+ " values (" + latestOrder.getItemId() + ", " + latestOrder.getId() + ")");
 			return order;
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
@@ -119,7 +120,7 @@ public class OrderDao implements Dao<Order> {
 			statement.executeUpdate("update order_items set item_id="
 				+ order.getItemId() + " where order_id=" + order.getId());
 			statement.executeUpdate("update orders set customer_id=" + order.getCustomerId()
-				+ ", total_price=(select sum(price) as Order_Cost from (select item_id"
+				+ ", total_price=(select sum(price) as Order_Cost from (select item_id "
 				+ "from order_items where order_id =" + order.getId() 
 				+ ") as items_in_order join items on items_in_order.item_id = "
 				+ "items.id where id=" + order.getId() + ") where id=" + order.getId());
@@ -135,7 +136,7 @@ public class OrderDao implements Dao<Order> {
 	 * Deletes a record in the database.
 	 */
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		try (Connection connection = DriverManager.getConnection(
 				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();

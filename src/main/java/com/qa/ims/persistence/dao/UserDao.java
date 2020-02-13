@@ -72,8 +72,8 @@ public class UserDao implements Dao<User>{
 		try (Connection connection = DriverManager.getConnection(
 				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("update users set username=" + user.getUsername() 
-			+ " where id=" + user.getId());
+			statement.executeUpdate("update users set username='" + user.getUsername() 
+			+ "' where id=" + user.getId());
 			return user;
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
@@ -86,7 +86,7 @@ public class UserDao implements Dao<User>{
 	 * Deletes a record in the database.
 	 */
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		try (Connection connection = DriverManager.getConnection(
 				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
