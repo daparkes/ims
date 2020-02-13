@@ -27,7 +27,7 @@ public class System {
 	public static final Logger LOGGER = Logger.getLogger(System.class);
 	
 	public void imSystem() {
-
+		
 		LOGGER.info("Please enter your username:");
 		String username = Utils.getInput();
 		LOGGER.info("Please enter your password:");
@@ -40,11 +40,11 @@ public class System {
 			Domain.printDomains();
 			
 			Domain domain = Domain.getDomain();
-			if (domain.name()=="STOP") {
+			if (domain.name().equals("STOP")) {
 				break;
 			} else {
 				LOGGER.info("What would you like to do with " + domain.name().toLowerCase()
-					+ ":");
+					+ "s:");
 			}
 			
 			Action.printActions();
@@ -79,6 +79,11 @@ public class System {
 			}
 	}
 	
+	/**
+	 * Does an action based on what the user inputs
+	 * @param crudController
+	 * @param action
+	 */
 	public void doAction(CrudController<?> crudController, Action action) {
 		switch(action) {
 		case CREATE:
@@ -99,7 +104,12 @@ public class System {
 			break;
 		}
 	}
-	
+	/**
+	 * Gives default value for DB connection and passes the username and password
+	 * provided by the user.
+	 * @param username
+	 * @param password
+	 */
 	public void init(String username, String password) {
 		init("jdbc:mysql://34.76.133.172:3306/ims", username, password);
 	}

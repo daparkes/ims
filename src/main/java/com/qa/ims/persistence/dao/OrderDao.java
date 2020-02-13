@@ -93,13 +93,13 @@ public class OrderDao implements Dao<Order> {
 		try (Connection connection = DriverManager.getConnection(
 				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("insert into order_items(item_id, order_id)"
-				+ " values (" + order.getItemId() + ", " + order.getId() + ")");
 			statement.executeUpdate("insert into orders(customer_id,"
 				+ "total_price)" + "values (" + order.getCustomerId() + ", "
 				+ "(select sum(price) as Order_Cost from (select item_id from order_items "
 				+ "where order_id =" + order.getId() + ") as items_in_order join items "
 				+ "on items_in_order.item_id = items.id))");
+			statement.executeUpdate("insert into order_items(item_id, order_id)"
+					+ " values (" + order.getItemId() + ", " + order.getId() + ")");
 			return order;
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
