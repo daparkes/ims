@@ -81,8 +81,8 @@ public class CustomerDao implements Dao<Customer> {
 	@Override
 	public Customer update(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
 			statement.executeUpdate("update customers set first_name ='"
 					+ customer.getFirstName() + "', surname ='"
 					+ customer.getSurname() + "' where id =" + customer.getId());
@@ -100,10 +100,9 @@ public class CustomerDao implements Dao<Customer> {
 	@Override
 	public void delete(Long id) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
-			statement.executeUpdate("delete from customers where id="
-				+ id);
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
+			statement.executeUpdate("delete from customers where id=" + id);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());

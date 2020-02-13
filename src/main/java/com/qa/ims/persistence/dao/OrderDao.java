@@ -37,10 +37,10 @@ public class OrderDao implements Dao<Order> {
 	public ArrayList<Order> readAll() {
 		ArrayList<Order> orders = new ArrayList<Order>();
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from orders"
-					+ " join order_items on orders.id=order_items.order_id");
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("select * from orders"
+						+ " join order_items on orders.id=order_items.order_id");) {			
 			while (resultSet.next()) {
 				Long id = resultSet.getLong("id");				
 				Long customerId = resultSet.getLong("customer_id");
@@ -117,8 +117,8 @@ public class OrderDao implements Dao<Order> {
 	@Override
 	public Order update(Order order) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
 			statement.executeUpdate("update order_items set item_id="
 				+ order.getItemId() + " where order_id=" + order.getId());
 			statement.executeUpdate("update orders set customer_id=" + order.getCustomerId()
