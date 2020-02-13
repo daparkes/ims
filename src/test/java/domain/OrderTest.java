@@ -18,8 +18,8 @@ public class OrderTest {
 	
 	@Before
 	public void setUp() {
-		order = new Order(1L, 3L, 4L);
-		other = new Order(1L, 3L, 4L);
+		order = new Order(1L, 3L, 4L, 5);
+		other = new Order(1L, 3L, 4L, 5);
 	}
 	
 	@Test
@@ -123,7 +123,7 @@ public class OrderTest {
 	
 	@Test
 	public void constructorWithoutId() {
-		Order order = new Order(5L, 7L);
+		Order order = new Order(5L, 7L, 5);
 		assertNull(order.getId());
 		assertNotNull(order.getItemId());
 		assertNotNull(order.getCustomerId());
@@ -135,14 +135,14 @@ public class OrderTest {
 	}
 	@Test
 	public void hashCodeTestWithNull() {
-		Order order = new Order(null, null);
-		Order other = new Order(null, null);
+		Order order = new Order(null, null, null);
+		Order other = new Order(null, null, null);
 		assertEquals(order.hashCode(), other.hashCode());
 	}
 	
 	@Test
 	public void toStringTest() {
-		String toString = "id=1, customerId=3, totalPrice=null, itemId=4";
+		String toString = "id=1, customerId=3, totalPrice=null, itemId=4, quantity=5";
 		assertEquals(toString, order.toString());
 	}
 }

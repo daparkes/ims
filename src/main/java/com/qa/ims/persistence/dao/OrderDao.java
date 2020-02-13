@@ -39,9 +39,10 @@ public class OrderDao implements Dao<Order> {
 			while (resultSet.next()) {
 				Long id = resultSet.getLong("id");				
 				Long customerId = resultSet.getLong("customer_id");
-				float totalPrice = resultSet.getFloat("total_price");
+				Float totalPrice = resultSet.getFloat("total_price");
 				Long itemId = resultSet.getLong("item_id");
-				Order order = new Order(id, customerId, totalPrice, itemId);
+				Integer quantity = resultSet.getInt("quantity");
+				Order order = new Order(id, customerId, totalPrice, itemId, quantity);
 				orders.add(order);
 			}
 		} catch (Exception e) {	
@@ -60,10 +61,7 @@ public class OrderDao implements Dao<Order> {
 	 */
 	Order latestOrder(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
-		Long customerId = resultSet.getLong("customer_id");
-		Float totalPrice = resultSet.getFloat("total_price");
-		Long itemId = resultSet.getLong("item_id");
-		return new Order(id, customerId, totalPrice, itemId);
+		return new Order(id);
 	}
 	
 	/**
@@ -94,13 +92,13 @@ public class OrderDao implements Dao<Order> {
 				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("insert into orders(customer_id, "
-				+ "total_price)" + " values (" + order.getCustomerId() + ", "
+				+ "total_price, quantity)" + " values (" + order.getCustomerId() + ", "
 				+ "(select sum(price) as Order_Cost from (select item_id from order_items "
 				+ "where order_id =" + order.getId() + ") as items_in_order join items "
-				+ "on items_in_order.item_id = items.id))");
+				+ "on items_in_order.item_id = items.id), " + order.getQuantity() + ")");
 			Order latestOrder = readLatest();
 			statement.executeUpdate("insert into order_items(item_id, order_id)"
-				+ " values (" + latestOrder.getItemId() + ", " + latestOrder.getId() + ")");
+				+ " values (" + order.getItemId() + ", " + latestOrder.getId() + ")");
 			return order;
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
@@ -123,7 +121,8 @@ public class OrderDao implements Dao<Order> {
 				+ ", total_price=(select sum(price) as Order_Cost from (select item_id "
 				+ "from order_items where order_id =" + order.getId() 
 				+ ") as items_in_order join items on items_in_order.item_id = "
-				+ "items.id where id=" + order.getId() + ") where id=" + order.getId());
+				+ "items.id where id=" + order.getId() + "), quantity=" + order.getQuantity()
+				+ " where id=" + order.getId());
 			return order;
 		} catch (Exception e) {	
 			LOGGER.debug(e.getStackTrace());
