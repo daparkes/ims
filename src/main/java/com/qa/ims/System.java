@@ -116,9 +116,9 @@ public class System {
 	 * @param username
 	 * @param password
 	 */
-	public void init(String username, String password) {
-		init("jdbc:mysql://34.76.133.172:3306/ims", username, password);
-	}
+//	public void init(String username, String password) {
+//		init("jdbc:mysql://34.76.133.172:3306/ims", username, password);
+//	}
 	
 	/**
 	 * Initialises the database with the username and password provided by the user
@@ -128,9 +128,9 @@ public class System {
 	 * @param username
 	 * @param password
 	 */
-	public void init(String connectionURL, String username, String password) {
-		try (Connection connection = DriverManager.getConnection(connectionURL, 
-				username, password);) {
+	public void init(String username, String password) {
+		try (Connection connection = DriverManager.getConnection(
+				"jdbc:mysql://34.76.133.172:3306/ims", username, password);) {
 		} catch (SQLException e) {
 		LOGGER.debug(e.getStackTrace());
 		LOGGER.error(e.getMessage());
