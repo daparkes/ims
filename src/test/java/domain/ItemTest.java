@@ -121,18 +121,18 @@ public class ItemTest {
 		assertFalse(item.equals(other));
 	}
 	
-//	@Test
-//	public void nullPrice() {
-//		item.setPrice(null);
-//		assertFalse(item.equals(other));
-//	}
-//	
-//	@Test
-//	public void nullPriceOnBoth() {
-//		item.setPrice(null);
-//		other.setPrice(null);
-//		assertTrue(item.equals(other));
-//	}
+	@Test
+	public void nullPrice() {
+		item.setPrice(null);
+		assertFalse(item.equals(other));
+	}
+	
+	@Test
+	public void nullPriceOnBoth() {
+		item.setPrice(null);
+		other.setPrice(null);
+		assertTrue(item.equals(other));
+	}
 	
 	@Test
 	public void otherPriceDifferent() {
@@ -152,11 +152,11 @@ public class ItemTest {
 	public void hashCodeTest() {
 		assertEquals(item.hashCode(), other.hashCode());
 	}
-//	@Test
-//	public void hashCodeTestWithNull() {
-//		Item item = new Item(null, null);
-//		Item other = new Item(null, null);
-//		assertEquals(item.hashCode(), other.hashCode());
-//	}
+	@Test
+	public void hashCodeTestWithNull() {
+		Item item = new Item(null, null);
+		Item other = new Item(null, null);
+		assertEquals(item.hashCode(), other.hashCode());
+	}
 	
 }
