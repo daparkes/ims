@@ -94,8 +94,8 @@ public class OrderDao implements Dao<Order> {
 	@Override
 	public Order create(Order order) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
 			statement.executeUpdate("insert into orders(customer_id, total_price, quantity) values "
 					+ "(" + order.getCustomerId() + ", (select sum(price)*" 
 					+ order.getQuantity() + " from items where id=" + order.getItemId() 
@@ -141,8 +141,8 @@ public class OrderDao implements Dao<Order> {
 	@Override
 	public void delete(Long id) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
 			statement.executeUpdate("delete from order_items where order_id="
 					+ id);
 			statement.executeUpdate("delete from orders where id=" + id);
