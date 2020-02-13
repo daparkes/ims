@@ -8,3 +8,4 @@ maven-tutorial
 *bin/
 .classpath
 .project
+log-file.log

@@ -39,10 +39,12 @@ public class OrderController implements CrudController<Order> {
 	@Override
 	public Order create() {
 		LOGGER.info("Please enter a customer ID:");
-		long customerId = Long.valueOf(getInput());
+		Long customerId = Long.valueOf(getInput());
 		LOGGER.info("Please enter an item ID:");
-		int itemId = Integer.valueOf(getInput());
-		Order order = orderService.create(new Order(customerId, itemId));
+		Long itemId = Long.valueOf(getInput());
+		LOGGER.info("Please enter a quantity:");
+		Integer quantity = Integer.valueOf(getInput());
+		Order order = orderService.create(new Order(customerId, itemId, quantity));
 		LOGGER.info("Order created");
 		return order;
 	}
@@ -54,11 +56,13 @@ public class OrderController implements CrudController<Order> {
 	public Order update() {
 		LOGGER.info("Please enter the ID of the order you would like to update: ");
 		Long id = Long.valueOf(getInput());
-		LOGGER.info("Please enter a customer ID:");
+		LOGGER.info("Please enter a new customer ID:");
 		Long customerId = Long.valueOf(getInput());
-		LOGGER.info("Please enter an item ID:");
-		int itemId = Integer.valueOf(getInput());
-		Order order = orderService.update(new Order(id, customerId, itemId));
+		LOGGER.info("Please enter a new item ID:");
+		Long itemId = Long.valueOf(getInput());
+		LOGGER.info("Please enter a new quantity:");
+		Integer quantity = Integer.valueOf(getInput());
+		Order order = orderService.update(new Order(id, customerId, itemId, quantity));
 		LOGGER.info("Order Updated");
 		return order;
 	}
@@ -71,5 +75,6 @@ public class OrderController implements CrudController<Order> {
 		LOGGER.info("Please enter the ID of the order you would like to delete:");
 		Long id = Long.valueOf(getInput());
 		orderService.delete(id);
+		LOGGER.info("Order successfully deleted");
 	}
 }

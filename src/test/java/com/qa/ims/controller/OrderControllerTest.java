@@ -32,9 +32,9 @@ public class OrderControllerTest {
 	public void readAllTest() {
 		OrderController orderController = new OrderController(orderServices);
 		List<Order> orders = new ArrayList<>();
-		orders.add(new Order(1L, 1L, 3));
-		orders.add(new Order(2L, 2L, 3));
-		orders.add(new Order(3L, 3L, 5));
+		orders.add(new Order(1L, 1L, 3L, 5));
+		orders.add(new Order(2L, 2L, 3L, 5));
+		orders.add(new Order(3L, 3L, 5L, 5));
 		Mockito.when(orderServices.readAll()).thenReturn(orders);
 		assertEquals(orders, orderController.readAll());
 	}
@@ -44,9 +44,10 @@ public class OrderControllerTest {
 		String id = "2";
 		String customerId = "4";
 		String itemId = "3";
-		Mockito.doReturn(id, customerId, itemId).when(orderController).getInput();
-		Order order = new Order(2L, 4L, 3);
-		Order savedOrder = new Order(2L, 4L, 3);
+		String quantity = "5";
+		Mockito.doReturn(customerId, itemId, quantity).when(orderController).getInput();
+		Order order = new Order(4L, 3L, 5);
+		Order savedOrder = new Order(2L, 4L, 3L, 5);
 		Mockito.when(orderServices.create(order)).thenReturn(savedOrder);
 		assertEquals(savedOrder, orderController.create());
 	}
@@ -56,8 +57,9 @@ public class OrderControllerTest {
 		String id = "2";
 		String customerId = "4";
 		String itemId = "3";
-		Mockito.doReturn(id, customerId, itemId).when(orderController).getInput();
-		Order order = new Order(id, customerId, itemId);
+		String quantity = "5";
+		Mockito.doReturn(id, customerId, itemId, quantity).when(orderController).getInput();		
+		Order order = new Order(2L, 4L, 3L, 5);
 		Mockito.when(orderServices.update(order)).thenReturn(order);
 		assertEquals(order, orderController.update());
 	}

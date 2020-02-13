@@ -48,7 +48,7 @@ public class CustomerDao implements Dao<Customer> {
 		} catch (Exception e) {		
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
-		}	
+		}
 		return customers;
 	}
 	
@@ -93,7 +93,7 @@ public class CustomerDao implements Dao<Customer> {
 	 * Delete a record from the database.
 	 */
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		try (Connection connection = DriverManager.getConnection(
 				connectionURL, username, password)) {
 			Statement statement = connection.createStatement();
