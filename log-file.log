@@ -1446,3 +1446,44 @@
 2020-02-13 16:55:06 INFO  Domain:29 - ORDER: View, create, update or delete orders
 2020-02-13 16:55:06 INFO  Domain:29 - USER: View, create, update or delete users
 2020-02-13 16:55:06 INFO  Domain:29 - STOP: Close the application
+2020-02-13 17:30:08 INFO  System:37 - Please enter your username:
+2020-02-13 17:30:10 INFO  System:39 - Please enter your password:
+2020-02-13 17:30:14 INFO  System:45 - Which system would you like to access?
+2020-02-13 17:30:14 INFO  Domain:29 - CUSTOMER: View, create, update or delete customers
+2020-02-13 17:30:14 INFO  Domain:29 - ITEM: View, create, update or delete items
+2020-02-13 17:30:14 INFO  Domain:29 - ORDER: View, create, update or delete orders
+2020-02-13 17:30:14 INFO  Domain:29 - USER: View, create, update or delete users
+2020-02-13 17:30:14 INFO  Domain:29 - STOP: Close the application
+2020-02-13 17:30:16 INFO  System:52 - What would you like to do with customers:
+2020-02-13 17:30:16 INFO  Action:39 - CREATE: Save a new item in the database.
+2020-02-13 17:30:16 INFO  Action:39 - READ: View an item in the database.
+2020-02-13 17:30:16 INFO  Action:39 - UPDATE: Change an existing item in the database.
+2020-02-13 17:30:16 INFO  Action:39 - DELETE: Remove an item from the database.
+2020-02-13 17:30:16 INFO  Action:39 - RETURN: Return to section select.
+2020-02-13 17:30:17 INFO  CustomerController:31 - id: 1, first name: bob, surname: dylan
+2020-02-13 17:30:17 INFO  CustomerController:31 - id: 2, first name: george, surname: clooney
+2020-02-13 17:30:17 INFO  CustomerController:31 - id: 3, first name: helen, surname: mirren
+2020-02-13 17:30:17 INFO  CustomerController:31 - id: 4, first name: susan, surname: sarandon
+2020-02-13 17:30:17 INFO  System:45 - Which system would you like to access?
+2020-02-13 17:30:17 INFO  Domain:29 - CUSTOMER: View, create, update or delete customers
+2020-02-13 17:30:17 INFO  Domain:29 - ITEM: View, create, update or delete items
+2020-02-13 17:30:17 INFO  Domain:29 - ORDER: View, create, update or delete orders
+2020-02-13 17:30:17 INFO  Domain:29 - USER: View, create, update or delete users
+2020-02-13 17:30:17 INFO  Domain:29 - STOP: Close the application
+2020-02-13 17:30:21 INFO  System:52 - What would you like to do with orders:
+2020-02-13 17:30:21 INFO  Action:39 - CREATE: Save a new item in the database.
+2020-02-13 17:30:21 INFO  Action:39 - READ: View an item in the database.
+2020-02-13 17:30:21 INFO  Action:39 - UPDATE: Change an existing item in the database.
+2020-02-13 17:30:21 INFO  Action:39 - DELETE: Remove an item from the database.
+2020-02-13 17:30:21 INFO  Action:39 - RETURN: Return to section select.
+2020-02-13 17:30:23 ERROR Action:55 - Invalid selection. Please try again.
+2020-02-13 17:30:24 INFO  OrderController:41 - Please enter a customer ID:
+2020-02-13 17:30:27 INFO  OrderController:43 - Please enter an item ID:
+2020-02-13 17:30:28 INFO  OrderController:45 - Please enter a quantity:
+2020-02-13 17:30:29 INFO  OrderController:48 - Order created
+2020-02-13 17:30:29 INFO  System:45 - Which system would you like to access?
+2020-02-13 17:30:29 INFO  Domain:29 - CUSTOMER: View, create, update or delete customers
+2020-02-13 17:30:29 INFO  Domain:29 - ITEM: View, create, update or delete items
+2020-02-13 17:30:29 INFO  Domain:29 - ORDER: View, create, update or delete orders
+2020-02-13 17:30:29 INFO  Domain:29 - USER: View, create, update or delete users
+2020-02-13 17:30:29 INFO  Domain:29 - STOP: Close the application

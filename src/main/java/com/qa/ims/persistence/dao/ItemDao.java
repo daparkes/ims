@@ -33,10 +33,9 @@ public class ItemDao implements Dao<Item>{
 	@Override
 	public ArrayList<Item> readAll() {
 		ArrayList<Item> items = new ArrayList<Item>();
-		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from items");
+		try (Connection connection = DriverManager.getConnection(connectionURL, username, password);
+			Statement statement = connection.createStatement();	
+			ResultSet resultSet = statement.executeQuery("select * from items");) {
 			while (resultSet.next()) {
 				Long id = resultSet.getLong("id");				
 				String itemName = resultSet.getString("item_name");
@@ -57,8 +56,8 @@ public class ItemDao implements Dao<Item>{
 	@Override
 	public Item create(Item item) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
 			statement.executeUpdate("insert into items("
 				+ "item_name, price)" + " values ('" 
 				+ item.getItemName() + "'," + item.getPrice() +")");
@@ -75,8 +74,8 @@ public class ItemDao implements Dao<Item>{
 	@Override
 	public Item update(Item item) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
 			statement.executeUpdate("update items set item_name='" + item.getItemName()
 			+ "', price=" + item.getPrice() + " where id=" + item.getId());
 		} catch (Exception e) {
@@ -93,8 +92,8 @@ public class ItemDao implements Dao<Item>{
 	@Override
 	public void delete(Long id) {
 		try (Connection connection = DriverManager.getConnection(
-				connectionURL, username, password)) {
-			Statement statement = connection.createStatement();
+				connectionURL, username, password);
+				Statement statement = connection.createStatement();) {			
 			statement.executeUpdate("delete from order_items where item_id=" + id);
 			statement.executeUpdate("delete from items where id=" + id);			
 		} catch (Exception e) {
