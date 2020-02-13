@@ -39,9 +39,7 @@ The application will ask for information and manipulate the database accordingly
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
-
-The unit and integration tests written for the applican can either be run manually in Eclipse (by right-clicking on them
+The unit and integration tests written for the application can either be run manually in Eclipse (by right-clicking on them
 and selecting Run As -> JUnit Test or by opening them and pressing Ctrl+F11) or automatically, for example by deploying
 to a Jenkins server that builds the project periodically using Maven. Other steps can be built into this pipeline, such as
 scripting deployment to an artifact repository like Nexus after building.
@@ -97,7 +95,9 @@ many useful metrics, such as code coverage. It will also find bugs, security vul
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+mvn deploy
+
+This can be configured to deploy the compiled project to an artifact repository such as Nexus.
 
 ## Built With
 
@@ -114,8 +114,6 @@ We use [SemVer](http://semver.org/) for versioning.
 ## License
 
 This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md) file for details 
-
-*For help in [Choosing a license](https://choosealicense.com/)*
 
 ## Acknowledgments
 
