@@ -51,6 +51,7 @@ These tests are intended to test the functionality of individual methods. For ex
 method inside the Customer, Item, Order and User classes to verify that the getters and setters work, that objects and fields
 can be set to null, and many more. These tests must pass to ensure that the application runs correctly. For example, this is
 a test for the setters in the Item class:
+	
 	@Test
 	public void settersTest() {
 		assertNotNull(item.getId());
