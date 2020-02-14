@@ -1717,3 +1717,52 @@
 2020-02-14 10:04:55 INFO  UserController:44 - User created successfully
 2020-02-14 10:04:55 INFO  UserController:67 - Please enter the ID of the user you would like to delete:
 2020-02-14 10:04:55 INFO  UserController:70 - User successfully deleted
+2020-02-14 10:08:03 INFO  CustomerController:31 - id: null, first name: Chris, surname: P
+2020-02-14 10:08:03 INFO  CustomerController:31 - id: null, first name: Rhys, surname: T
+2020-02-14 10:08:03 INFO  CustomerController:31 - id: null, first name: Nic, surname: J
+2020-02-14 10:08:03 INFO  CustomerController:55 - Please enter the ID of the customer you would like to update: 
+2020-02-14 10:08:03 INFO  CustomerController:57 - Please enter a first name: 
+2020-02-14 10:08:03 INFO  CustomerController:59 - Please enter a surname: 
+2020-02-14 10:08:03 INFO  CustomerController:62 - Customer Updated
+2020-02-14 10:08:03 INFO  CustomerController:41 - Please enter a first name:
+2020-02-14 10:08:03 INFO  CustomerController:43 - Please enter a surname
+2020-02-14 10:08:03 INFO  CustomerController:46 - Customer created
+2020-02-14 10:08:03 INFO  CustomerController:71 - Please enter the ID of the customer you would like to delete:
+2020-02-14 10:08:03 INFO  CustomerController:74 - Customer successfully deleted
+2020-02-14 10:08:03 INFO  ItemController:31 - id=3, itemName=fanta, price=1.5
+2020-02-14 10:08:03 INFO  ItemController:31 - id=4, itemName=coke, price=1.5
+2020-02-14 10:08:03 INFO  ItemController:31 - id=2, itemName=mars bar, price=0.9
+2020-02-14 10:08:03 INFO  ItemController:55 - Please enter the ID of the item you would like to update: 
+2020-02-14 10:08:03 INFO  ItemController:57 - Please enter an item name: 
+2020-02-14 10:08:03 INFO  ItemController:59 - Please enter a price: 
+2020-02-14 10:08:03 INFO  ItemController:62 - Item Updated
+2020-02-14 10:08:03 INFO  ItemController:41 - Please enter an item name:
+2020-02-14 10:08:03 INFO  ItemController:43 - Please enter a price:
+2020-02-14 10:08:03 INFO  ItemController:46 - Item created
+2020-02-14 10:08:03 INFO  ItemController:71 - Please enter the ID of the item you would like to delete:
+2020-02-14 10:08:03 INFO  ItemController:74 - Item successfully deleted
+2020-02-14 10:08:03 INFO  OrderController:31 - id=1, customerId=1, totalPrice=null, itemId=3, quantity=5
+2020-02-14 10:08:03 INFO  OrderController:31 - id=2, customerId=2, totalPrice=null, itemId=3, quantity=5
+2020-02-14 10:08:03 INFO  OrderController:31 - id=3, customerId=3, totalPrice=null, itemId=5, quantity=5
+2020-02-14 10:08:03 INFO  OrderController:57 - Please enter the ID of the order you would like to update: 
+2020-02-14 10:08:03 INFO  OrderController:59 - Please enter a new customer ID:
+2020-02-14 10:08:03 INFO  OrderController:61 - Please enter a new item ID:
+2020-02-14 10:08:03 INFO  OrderController:63 - Please enter a new quantity:
+2020-02-14 10:08:03 INFO  OrderController:66 - Order Updated
+2020-02-14 10:08:03 INFO  OrderController:41 - Please enter a customer ID:
+2020-02-14 10:08:03 INFO  OrderController:43 - Please enter an item ID:
+2020-02-14 10:08:03 INFO  OrderController:45 - Please enter a quantity:
+2020-02-14 10:08:03 INFO  OrderController:48 - Order created
+2020-02-14 10:08:03 INFO  OrderController:75 - Please enter the ID of the order you would like to delete:
+2020-02-14 10:08:03 INFO  OrderController:78 - Order successfully deleted
+2020-02-14 10:08:03 INFO  UserController:31 - id=null, username=chris
+2020-02-14 10:08:03 INFO  UserController:31 - id=null, username=chris
+2020-02-14 10:08:03 INFO  UserController:31 - id=null, username=nick
+2020-02-14 10:08:03 INFO  UserController:53 - Please enter the ID of the user you would like to update: 
+2020-02-14 10:08:03 INFO  UserController:55 - Please enter a new username:
+2020-02-14 10:08:03 INFO  UserController:58 - User Updated
+2020-02-14 10:08:03 INFO  UserController:41 - Please enter a username:
+2020-02-14 10:08:03 INFO  UserController:44 - User created successfully
+2020-02-14 10:08:03 INFO  UserController:67 - Please enter the ID of the user you would like to delete:
+2020-02-14 10:08:03 INFO  UserController:70 - User successfully deleted
+2020-02-14 10:10:21 INFO  System:37 - Please enter your username:
